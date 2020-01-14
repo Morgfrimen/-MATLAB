@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ЧисленныМетоды"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    <!--Главное окно-->
+    <system:String x:Key="mainWindow_Title">Численные методы</system:String>
+    <!--Симплекс-метод-->
+    <system:String x:Key="simplexMethod_Title">Симплекс-метод</system:String>
+    <!--Глобальные настройки-->
+    <system:String x:Key="App_Config">Настройки приложения</system:String>
+    <system:String x:Key="App_Theme">Тема</system:String>
+    <system:String x:Key="App_Theme_Dark">Темная</system:String>
+    <system:String x:Key="App_Theme_White">Светлая</system:String>
+
+    <!--Конфиг-->
+    <system:String x:Key="simplexMethod_Config">Настройка</system:String>
+    <system:String x:Key="nameStudent">Имя пользователя</system:String>
+    <system:String x:Key="groupStudent">Группа</system:String>
+    <system:String x:Key="outputSaveFile">Вывод</system:String>
+
+    
+    <system:String x:Key="simplexMethod_Picture">Графический ввод</system:String>
+    <!--Графический ввод-->
+    <system:String x:Key="simplexMethod_Count_X">Количество Х</system:String>
+    <system:String x:Key="simplexMethod_Nagruzka">Н</system:String>
+    <system:String x:Key="simplexMethod_Generator">Г-</system:String>
+    <system:String x:Key="simplexMethod_Pmax">Мощность:</system:String>
+    <system:String x:Key="simplexMethod_T">T,ч/год:</system:String>
+    <system:String x:Key="simplexMethod_K">K0:</system:String>
+    <system:String x:Key="simplexMethod_Y">Y:</system:String>
+
+
+
+
+    <system:String x:Key="simplexMethod_Analic">Аналитический ввод</system:String>
+    <system:String x:Key="simplexMethod_Output_Analitic">Результат</system:String>
+
+
+
+
+
+
+
+    <!--Информационные ресурсы и ресурсы для ViewModels-->
+    <system:String x:Key="ViewModels_NOT_ValidCountX">Допустимо генераторных узлов не больше: </system:String>
+    <system:String x:Key="ViewModels_Cartion_MessageBox">Уведомление</system:String>
+
+
+</ResourceDictionary>

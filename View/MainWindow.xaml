@@ -1,0 +1,139 @@
+﻿<Window x:Class="ЧисленныМетоды.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ЧисленныМетоды"
+        xmlns:VM ="clr-namespace:ЧисленныМетоды.ViewModels"
+        xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+        mc:Ignorable="d"
+        Title="{DynamicResource mainWindow_Title}" MinHeight="480" 
+        MinWidth="800">
+    <Window.DataContext>
+        <VM:ViewModels></VM:ViewModels>
+    </Window.DataContext>
+    <Window.Resources>
+        <ResourceDictionary Source="../Style/Style.xaml"></ResourceDictionary>
+    </Window.Resources>
+    <Window.Style>
+        <StaticResource ResourceKey="BackGroundWhite"></StaticResource>
+    </Window.Style>
+
+    <TabControl>
+        <TabItem Header="{DynamicResource simplexMethod_Title}" Height="20" VerticalAlignment="Top">
+            <TabControl TabStripPlacement="Right" >
+                <TabControl.Resources>
+                        <Style TargetType="{x:Type TabItem}">
+                            <Setter Property="HeaderTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <ContentPresenter Content="{TemplateBinding Content}">
+                                            <ContentPresenter.LayoutTransform>
+                                                <RotateTransform Angle="90" />
+                                            </ContentPresenter.LayoutTransform>
+                                        </ContentPresenter>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Padding" Value="3" />
+                        </Style>
+                </TabControl.Resources>
+                <TabItem Header="{DynamicResource simplexMethod_Config}">
+                    <StackPanel x:Name="SimplexConfig"  
+                                Style="{StaticResource BackGroundWhite}" 
+                                Background="{x:Null}">
+                        <DockPanel Style="{StaticResource BackGroundWhite}">
+                            <Label x:Name="UserName" Style="{StaticResource BackGroundWhite}" Content="{DynamicResource nameStudent}" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                            <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Style="{StaticResource BackGroundWhite}" Content="{DynamicResource groupStudent}"></Label>
+                            <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBox>
+                        </DockPanel>
+                        <DockPanel>
+                            <Label Style="{StaticResource BackGroundWhite}" Content="{DynamicResource outputSaveFile}"></Label>
+                            <StackPanel Orientation="Horizontal" Style="{DynamicResource BackGroundWhite}">
+                                <RadioButton Style="{StaticResource RadioButtonStyle}" GroupName="SaveFile"
+                                             Content=".txt" VerticalAlignment="Center"
+                                             Margin="5,0,15,0"/>
+                                <RadioButton Style="{StaticResource RadioButtonStyle}"  GroupName="SaveFile"
+                                             Content=".docx" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DockPanel>
+
+                    </StackPanel>
+
+                </TabItem>
+                <TabItem Header="{DynamicResource simplexMethod_Picture}">
+                    <DockPanel Style="{StaticResource BackGroundWhite}">
+                        <Border DockPanel.Dock="Top"
+                                BorderThickness="1" 
+                                BorderBrush="#FF030303"
+                                Margin="0" VerticalAlignment="Stretch" 
+                                HorizontalAlignment="Stretch">
+                          <Canvas x:Name="CanvasSimplexMethod" 
+                                  Background="White">
+                             
+                            </Canvas>
+
+                        </Border>
+                        <DockPanel Style="{StaticResource BackGroundWhite}" 
+                                   DockPanel.Dock="Top" 
+                                   Height="25" 
+                                   HorizontalAlignment="Left" 
+                                   VerticalAlignment="Bottom">
+                            <Label Style="{StaticResource BackGroundWhite}" 
+                                   Content="{DynamicResource simplexMethod_Count_X}"></Label>
+                            <TextBox x:Name="CountGeneration" 
+                                     Width="50" 
+                                     HorizontalAlignment="Center"
+                                     VerticalAlignment="Center"
+                                     Text="{Binding CountX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                        </DockPanel>
+                    </DockPanel>
+
+
+                </TabItem>
+                <!--TODO:Стили для темы-->
+                <TabItem Header="{DynamicResource simplexMethod_Analic}">
+                    <StackPanel x:Name="Analitic_StackPanenel_SimplexMethod">
+                        <DockPanel>
+                            <Label Content="{DynamicResource simplexMethod_Count_X}"/>
+                            <TextBox x:Name="Analitic_SimplexSimplex_CounX" Style="{StaticResource Analitic_Simplex}" Width="30"
+                                     Text="{Binding CountX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                            
+                        </DockPanel>
+                    </StackPanel>
+                    <!--<DataGrid x:Name="DataGridAnaliticView"></DataGrid>-->
+
+                </TabItem>
+                <TabItem Header="{DynamicResource simplexMethod_Output_Analitic}">
+
+                </TabItem>
+
+            </TabControl>
+        </TabItem>
+        <TabItem Header="{DynamicResource App_Config}">
+            <StackPanel Style="{StaticResource BackGroundWhite}">
+                <DockPanel Style="{StaticResource BackGroundWhite}">
+                    <Label Style="{StaticResource BackGroundWhite}" Content="{DynamicResource App_Theme}"></Label>
+                    <RadioButton Style="{StaticResource RadioButtonStyle}" GroupName="Color" 
+                                 Content="{DynamicResource App_Theme_Dark}" 
+                                 x:Name="BlackTheme"
+                                 HorizontalAlignment="Center" 
+                                 VerticalAlignment="Center"
+                                 Margin="10,0,10,0"/>
+                    <RadioButton Style="{StaticResource RadioButtonStyle}"
+                                 x:Name="WhileTheme"
+                                 GroupName="Color" 
+                                 Content="{DynamicResource App_Theme_White}"
+                                 HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 />
+                </DockPanel>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+
+
+</Window>
