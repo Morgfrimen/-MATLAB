@@ -11,7 +11,7 @@ using WpfMath;
 using WpfMath.Controls;
 using ЧисленныМетоды.Models.SinplexMethod_GraphicInput;
 
-namespace ЧисленныМетоды.View
+namespace ЧисленныМетоды.ViewModels
 {
     //В качестве идеи - добавить в аналитиику новые компоненты с перебиндинком с выбранному в комбо боксе элементу
     //и потом уже ограничения в онлайн режиме городить
@@ -21,7 +21,7 @@ namespace ЧисленныМетоды.View
         private const double FormulaFontSize = 14;
         private const double WidhtTextBox = 60;
 
-        private ViewModels.ViewModels viewModels;
+        private ЧисленныМетоды.ViewModels.ViewModels viewModels;
         private float _e= 0.12f;
         private List<IElements> listIElements;
 
@@ -57,7 +57,7 @@ namespace ЧисленныМетоды.View
 
         public EventAndMethodViewModels()
         {
-            viewModels = ViewModels.ViewModels.ViewModel; 
+            viewModels = ЧисленныМетоды.ViewModels.ViewModels.ViewModel; 
             UpdateListElements();
         }
 
