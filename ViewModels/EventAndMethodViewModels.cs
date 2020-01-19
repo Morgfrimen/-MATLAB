@@ -73,122 +73,17 @@ namespace ЧисленныМетоды.ViewModels
 
             stackPanelAnaliticForms.Children.RemoveRange(1,stackPanelAnaliticForms.Children.Count-1);
 
-            Binding bindingE = new Binding(){Source = this,Path = new PropertyPath(nameof(E)),Mode = BindingMode.TwoWay};
-            TextBox textBox1 = new TextBox() { Style = viewModels.MainWindow.FindResource("Analitic_Simplex") as Style ,
-                Width = WidhtTextBox,
-                Margin = new Thickness(0,0,10,0)};
-            textBox1.SetBinding(TextBox.TextProperty, bindingE);
-            DockPanel dockPanel1=new DockPanel()
+            ComboBox comboBoxIElements = new ComboBox();
+            foreach (var element in listIElements)
             {
-                Children =
-                {
-                    new Label(){Content = "Коэффициент E: "},
-                    textBox1,
-                    new FormulaControl(){Formula = $"x_{{1}}...x_{countX} > 0",FontSize = FormulaFontSize},
-                }
-            };
-
-            stackPanelAnaliticForms.Children.Add(dockPanel1);
-
-            for (int i = 0; i < countX; i++)
-            {
-                var generator = listIElements[i] is Generator ? listIElements[i] as Generator : throw new Exception("EventAndMethodViewModels is NULL");
-                Binding binding=new Binding(){Source = listIElements[i],Path = new PropertyPath(nameof(generator.PMax))};
-                TextBox textBox = new TextBox()
-                {
-                    Style = viewModels.MainWindow.FindResource("Analitic_Simplex") as Style,
-                    Width = WidhtTextBox,
-                    FontSize = FormulaFontSize
-                };
-                textBox.TextChanged += TextBox_TextChanged;
-                textBox.GotFocus += TextBox_GotFocus_LostFocus;
-                textBox.LostFocus += TextBox_GotFocus_LostFocus;
-                textBox.MouseLeave += TextBox_MouseLeave;
-                textBox.MouseEnter += TextBox_MouseEnter;
-                textBox.SetBinding(TextBox.TextProperty, binding);
-
-                FormulaControl formula = new FormulaControl()
-                {
-                    Formula = $"x_{i + 1} < ", FontSize = FormulaFontSize,Scale = 18 ,
-                    HorizontalAlignment = HorizontalAlignment.Left,HorizontalContentAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Center,VerticalContentAlignment = VerticalAlignment.Bottom
-                };
-                DockPanel dockPanel = new DockPanel(){Children = {formula,textBox}};
-                stackPanelAnaliticForms.Children.Add(dockPanel);
+                comboBoxIElements.Items.Add(new TextBlock(){Text = element.GetName()});
             }
+            comboBoxIElements.SelectedIndex = 0;
 
-            DockPanel dockPanelSumP = new DockPanel();
-            for (int i = 0; i < countX; i++)
-            {
-                FormulaControl formula = new FormulaControl()
-                {
-                    FontSize = FormulaFontSize,
-                    Scale = 18,
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    HorizontalContentAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    VerticalContentAlignment = VerticalAlignment.Bottom
-                };
-                if (i == countX - 1) formula.Formula += $"x_{i + 1} =";
-                else formula.Formula += $"x_{i + 1} + ";
-                dockPanelSumP.Children.Add(formula);
-            }
-            Binding bindingSumPmax = new Binding(){Source = this,Path = new PropertyPath(nameof(this.SumPmax)),
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged};
-            Label textBoxSumPmax = new Label()
-            {
-                Style = viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock") as Style,
-                Width = WidhtTextBox,
-                FontSize = FormulaFontSize
-            };
-            textBoxSumPmax.SetBinding(Label.ContentProperty, bindingSumPmax);
-            dockPanelSumP.Children.Add(textBoxSumPmax);
+            stackPanelAnaliticForms.Children.Add(comboBoxIElements);
 
-            stackPanelAnaliticForms.Children.Add(dockPanelSumP);
+            //TODO: Генерация формы под опделенные IElements
 
-            DockPanel dockPanelTAndPnag=new DockPanel();
-            for (int i = 0; i < countX; i++)
-            {
-                var generator = listIElements[i] is Generator ? listIElements[i] as Generator : throw new Exception("EventAndMethodViewModels is NULL");
-                FormulaControl formula = new FormulaControl()
-                {
-                    FontSize = FormulaFontSize,
-                    Scale = 18,
-                    HorizontalAlignment = HorizontalAlignment.Left,
-                    HorizontalContentAlignment = HorizontalAlignment.Left,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    VerticalContentAlignment = VerticalAlignment.Bottom
-                };
-                if (generator.T != 0)
-                {
-                    if (i == countX - 1) formula.Formula += $"{generator.T / 1000}x_{i + 1} =";
-                    else formula.Formula += $"{generator.T / 1000}x_{i + 1} + ";
-                    dockPanelTAndPnag.Children.Add(formula);
-                }
-                else
-                {
-                    if (i == countX - 1) formula.Formula += $"{0}x_{i + 1} =";
-                    else formula.Formula += $"{0}x_{i + 1} + ";
-                    dockPanelTAndPnag.Children.Add(formula);
-                }
-            }
-
-            Binding bindingTAndPnag = new Binding()
-            {
-                Source = this,
-                Path = new PropertyPath(nameof(this.MaxTPmax)),
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
-            Label textBoxTAndPnag = new Label()
-            {
-                Style = viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock") as Style,
-                Width = WidhtTextBox,
-                FontSize = FormulaFontSize
-            };
-            textBoxTAndPnag.SetBinding(Label.ContentProperty, bindingTAndPnag);
-            dockPanelTAndPnag.Children.Add(textBoxTAndPnag);
-
-            stackPanelAnaliticForms.Children.Add(dockPanelTAndPnag);
         }
 
         private void TextBox_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)

@@ -241,6 +241,9 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
             throw new NotImplementedException();
         }
 
-
+        public virtual string GetName()
+        {
+            return "абстракный класс";
+        }
     }
 }

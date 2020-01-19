@@ -22,8 +22,11 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
         private StackPanel stackPanel=new StackPanel();
         public Generator(string name) : base(name, System.Drawing.Color.Red, System.Drawing.Color.Red)
         {
+            this.name = name;
             this.CreatePopupCanvas(true);
         }
+
+        private string name;
 
         private float? _pMax = 0;
         private float? _k0 = 0;
@@ -102,6 +105,11 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
                     }
                 }
             }
+        }
+
+        public override string GetName()
+        {
+            return name;
         }
     }
 }

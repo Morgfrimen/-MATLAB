@@ -17,8 +17,11 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
     {
         public Nagruzca(string nameElement) : base(nameElement, Color.White, Color.Black)
         {
+            this.name = nameElement;
             this.CreatePopupCanvas(false);
         }
+
+        private string name;
 
         private float? _pMax = 0;
         private float? _T = 0;
@@ -73,6 +76,11 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
                     }
                 }
             }
+        }
+
+        public override string GetName()
+        {
+            return name;
         }
     }
 }

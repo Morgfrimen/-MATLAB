@@ -11,7 +11,9 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
         Canvas CanvasElement { get; }
 
         Color GetColor();
-        
+
+        string GetName();
+
 
 
 

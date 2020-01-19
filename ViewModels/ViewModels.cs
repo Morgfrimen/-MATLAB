@@ -239,9 +239,10 @@ namespace ЧисленныМетоды.ViewModels
                 _elementses.Add(generation);
             }
 
+            _elementses.Add(nag);
             eventAndMethodViewModels.Create_Analiticx_Simplex_Form();
 
-            _elementses.Add(nag);
+            
         }
 
        
