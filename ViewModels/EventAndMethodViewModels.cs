@@ -22,6 +22,7 @@ namespace ЧисленныМетоды.ViewModels
         private const double WidhtTextBox = 60;
 
         private ЧисленныМетоды.ViewModels.ViewModels viewModels;
+        private List<StackPanel> _analiticView = new List<StackPanel>();
         private float _e= 0.12f;
         private List<IElements> listIElements;
 
@@ -80,10 +81,137 @@ namespace ЧисленныМетоды.ViewModels
             }
             comboBoxIElements.SelectedIndex = 0;
 
+            comboBoxIElements.SelectionChanged += ComboBoxIElements_SelectionChanged;
+
             stackPanelAnaliticForms.Children.Add(comboBoxIElements);
 
             //TODO: Генерация формы под опделенные IElements
+            _analiticView.Clear();
 
+            StackPanel stackPanel = new StackPanel();
+            for (int elemIndex = 0; elemIndex < this.listIElements.Count; elemIndex++)
+            {
+                if (this.listIElements[elemIndex] is Generator)
+                {
+                    Generator generator = (listIElements[elemIndex] as Generator);
+
+                    TextBlock textBlock = new TextBlock(){Text = nameof(generator.PMax) };
+                    TextBox textBox = new TextBox() {Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+
+                    Binding bindingPmax = new Binding(){Source = generator,Path = new PropertyPath(nameof(generator.PMax)) };
+                    textBox.SetBinding(TextBox.TextProperty, bindingPmax);
+
+                    TextBlock textBlockK0 = new TextBlock() { Text = nameof(generator.K0) };
+                    TextBox textBoxK0 = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+
+                    Binding bindingK0 = new Binding() { Source = generator, Path = new PropertyPath(nameof(generator.K0)) };
+                    textBoxK0.SetBinding(TextBox.TextProperty, bindingK0);
+
+                    TextBlock textBlockT = new TextBlock() { Text = nameof(generator.T) };
+                    TextBox textBoxT = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+
+                    Binding bindingT = new Binding() { Source = generator, Path = new PropertyPath(nameof(generator.T)) };
+                    textBoxT.SetBinding(TextBox.TextProperty, bindingT);
+
+                    TextBlock textBlockY = new TextBlock() { Text = nameof(generator.Y) };
+                    TextBox textBoxY = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+
+                    Binding bindingY = new Binding() { Source = generator, Path = new PropertyPath(nameof(generator.Y)) };
+                    textBoxY.SetBinding(TextBox.TextProperty, bindingY);
+
+                    StackPanel stackPanelHorizontal1 = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Children = {textBlock,textBox }
+                    };
+
+                    StackPanel stackPanelHorizontal2 = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Children = { textBlockK0, textBoxK0 }
+                    };
+
+                    StackPanel stackPanelHorizontal3 = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Children = { textBlockT, textBoxT }
+                    };
+
+                    StackPanel stackPanelHorizontal4 = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Children = { textBlockY, textBoxY }
+                    };
+
+                    stackPanel.Children.Add(stackPanelHorizontal1);
+                    stackPanel.Children.Add(stackPanelHorizontal2);
+                    stackPanel.Children.Add(stackPanelHorizontal3);
+                    stackPanel.Children.Add(stackPanelHorizontal4);
+
+                    _analiticView.Add(stackPanel);
+                }
+                else
+                {
+                    Nagruzca nagruzca = (listIElements[elemIndex] as Nagruzca);
+
+                    TextBlock textBlock = new TextBlock() { Text = nameof(nagruzca.PMax) };
+                    TextBox textBox = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+
+                    Binding bindingPmax = new Binding() { Source = nagruzca, Path = new PropertyPath(nameof(nagruzca.PMax)) };
+                    textBox.SetBinding(TextBox.TextProperty, bindingPmax);
+
+                    TextBlock textBlockT = new TextBlock() { Text = nameof(nagruzca.T) };
+                    TextBox textBoxT = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+
+                    Binding bindingT = new Binding() { Source = nagruzca, Path = new PropertyPath(nameof(nagruzca.T)) };
+                    textBoxT.SetBinding(TextBox.TextProperty, bindingT);
+
+                    StackPanel stackPanelHorizontal1 = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Children = { textBlock, textBox }
+                    };
+
+                    StackPanel stackPanelHorizontal2 = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal,
+                        Children = { textBlockT, textBoxT }
+                    };
+
+                    stackPanel.Children.Add(stackPanelHorizontal1);
+                    stackPanel.Children.Add(stackPanelHorizontal2);
+
+                    _analiticView.Add(stackPanel);
+                }
+            }
+
+            //TODO: Допилить/перепилить
+            foreach (var element in _analiticView)
+            {
+                element.Visibility = Visibility.Collapsed;
+                stackPanelAnaliticForms.Children.Add(element);
+                
+            }
+
+            
+
+
+
+            //TODO: Добавить всё это дело на View
+
+
+        }
+
+        private void ComboBoxIElements_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox combo = sender as ComboBox;
+            StackPanel stackPanelAnaliticForms = viewModels.MainWindow.Analitic_StackPanenel_SimplexMethod;
+            for (int i = 2; i < stackPanelAnaliticForms.Children.Count; i++)
+            {
+                stackPanelAnaliticForms.Children[i].Visibility = Visibility.Collapsed;
+            }
+
+            stackPanelAnaliticForms.Children[combo.SelectedIndex].Visibility = Visibility.Visible;
         }
 
         private void TextBox_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)

@@ -54,7 +54,7 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
             set => _y = value;
         }
 
-        public LineConnect LineConnectGeneration
+        public new LineConnect LineConnectGeneration
         {
             get => base.LineConnectGeneration;
             set { base.LineConnectGeneration = value; }
