@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -85,12 +87,12 @@ namespace ЧисленныМетоды.ViewModels
 
             stackPanelAnaliticForms.Children.Add(comboBoxIElements);
 
-            //TODO: Генерация формы под опделенные IElements
             _analiticView.Clear();
 
-            StackPanel stackPanel = new StackPanel();
+            //TODO: сделать по-красивше аналитическое View
             for (int elemIndex = 0; elemIndex < this.listIElements.Count; elemIndex++)
             {
+                StackPanel stackPanel = new StackPanel();
                 if (this.listIElements[elemIndex] is Generator)
                 {
                     Generator generator = (listIElements[elemIndex] as Generator);
@@ -184,34 +186,23 @@ namespace ЧисленныМетоды.ViewModels
                     _analiticView.Add(stackPanel);
                 }
             }
-
-            //TODO: Допилить/перепилить
             foreach (var element in _analiticView)
             {
                 element.Visibility = Visibility.Collapsed;
                 stackPanelAnaliticForms.Children.Add(element);
-                
             }
-
-            
-
-
-
-            //TODO: Добавить всё это дело на View
-
-
         }
 
         private void ComboBoxIElements_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox combo = sender as ComboBox;
+            combo.IsEditable = false;
             StackPanel stackPanelAnaliticForms = viewModels.MainWindow.Analitic_StackPanenel_SimplexMethod;
-            for (int i = 2; i < stackPanelAnaliticForms.Children.Count; i++)
-            {
-                stackPanelAnaliticForms.Children[i].Visibility = Visibility.Collapsed;
-            }
 
-            stackPanelAnaliticForms.Children[combo.SelectedIndex].Visibility = Visibility.Visible;
+            _analiticView[combo.SelectedIndex].Visibility = Visibility.Visible;
+
+            stackPanelAnaliticForms.Children.RemoveRange(2, stackPanelAnaliticForms.Children.Count);
+            stackPanelAnaliticForms.Children.Add(_analiticView[combo.SelectedIndex]);
         }
 
         private void TextBox_MouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
