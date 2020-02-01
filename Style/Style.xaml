@@ -33,8 +33,10 @@
     </Style>
 
     <Style TargetType="TextBox" x:Key="Analitic_Simplex">
+        <Setter Property="Width" Value="50"></Setter>
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
         <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+        <Setter Property="TextAlignment" Value="Center"></Setter>
         <Setter Property="BorderThickness">
             <Setter.Value>
                 <Thickness Bottom="1"/>
@@ -58,11 +60,13 @@
         <Setter Property="Background" Value="{x:Null}"></Setter>
     </Style>
 
-    <Style TargetType="Label" x:Key="Analitic_Simplex_TextBlock">
+    <Style TargetType="FrameworkElement" x:Key="Analitic_Simplex_TextBlock">
         <Setter Property="VerticalAlignment" Value="Center"></Setter>
-        <Setter Property="HorizontalAlignment" Value="Left"></Setter>
-        <Setter Property="Background" Value="{x:Null}"></Setter>
+        <Setter Property="HorizontalAlignment" Value="Right"></Setter>
+        <Setter Property="Width" Value="35"></Setter>
     </Style>
+
+
 
 
 
