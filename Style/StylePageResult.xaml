@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ЧисленныМетоды">
+    <Style  TargetType="Grid" x:Key="MainGridPageResult">
+        <Setter Property="Width" Value="150" />
+        <Setter Property="Height" Value="100" />
+        <Setter Property="MinHeight" Value="150" />
+        <Setter Property="MinWidth" Value="200" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="LabelPageResult">
+        <Setter Property="FontFamily" Value="Times new romans" />
+        <Setter Property="FontSize" Value="14"></Setter>
+    </Style>
+
+    
+    
+</ResourceDictionary>
