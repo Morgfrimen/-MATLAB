@@ -107,8 +107,9 @@
                     <!--<DataGrid x:Name="DataGridAnaliticView"></DataGrid>-->
 
                 </TabItem>
-                <TabItem Header="{DynamicResource simplexMethod_Output_Analitic}">
-
+                <TabItem 
+                    Header="{DynamicResource simplexMethod_Output_Analitic}">
+                    <Frame Name="mainFrame" Source="Result.xaml"/>
                 </TabItem>
 
             </TabControl>
