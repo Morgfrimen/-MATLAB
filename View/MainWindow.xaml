@@ -80,7 +80,7 @@
                         <DockPanel Style="{StaticResource BackGroundWhite}" 
                                    DockPanel.Dock="Top" 
                                    Height="25" 
-                                   HorizontalAlignment="Left" 
+                                   HorizontalAlignment="Stretch" 
                                    VerticalAlignment="Bottom">
                             <Label Style="{StaticResource BackGroundWhite}" 
                                    Content="{DynamicResource simplexMethod_Count_X}"></Label>
@@ -88,7 +88,13 @@
                                      Width="50" 
                                      HorizontalAlignment="Center"
                                      VerticalAlignment="Center"
-                                     Text="{Binding CountX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                                     Text="{Binding CountX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+
+                            </TextBox>
+                            <Button DockPanel.Dock="Right" Content="Расчет" 
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    MinWidth="70"/>
                         </DockPanel>
                     </DockPanel>
 
@@ -96,20 +102,29 @@
                 </TabItem>
                 <!--TODO:Стили для темы-->
                 <TabItem Header="{DynamicResource simplexMethod_Analic}">
-                    <StackPanel x:Name="Analitic_StackPanenel_SimplexMethod">
-                        <DockPanel>
-                            <Label Content="{DynamicResource simplexMethod_Count_X}"/>
-                            <TextBox x:Name="Analitic_SimplexSimplex_CounX" Style="{StaticResource Analitic_Simplex}" Width="30"
-                                     Text="{Binding CountX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
-                            
-                        </DockPanel>
-                    </StackPanel>
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Top" x:Name="Analitic_StackPanenel_SimplexMethod">
+                            <DockPanel>
+                                <Label Content="{DynamicResource simplexMethod_Count_X}"/>
+                                <TextBox x:Name="Analitic_SimplexSimplex_CounX" Style="{StaticResource Analitic_Simplex}" Width="30"
+                                         Text="{Binding CountX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                            </DockPanel>
+                        </StackPanel>
+                        <Button DockPanel.Dock="Right" Content="Расчет" 
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                MinWidth="70"/>
+                    </DockPanel>
+
                     <!--<DataGrid x:Name="DataGridAnaliticView"></DataGrid>-->
 
                 </TabItem>
                 <TabItem 
-                    Header="{DynamicResource simplexMethod_Output_Analitic}">
-                    <Frame Name="mainFrame" Source="Result.xaml"/>
+                    Header="{DynamicResource simplexMethod_Output_Analitic}" x:Name="Resulst">
+                    <Frame x:Name="mainFrame" 
+                           NavigationUIVisibility="Automatic"
+                           />
                 </TabItem>
 
             </TabControl>

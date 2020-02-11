@@ -30,7 +30,7 @@ namespace ЧисленныМетоды.ViewModels
         private ICollection resourseCollection;
         
 
-        private MainWindow mainWindow;
+        protected MainWindow mainWindow;
         private static Config config = Config.Default;
         private Analizate analizate;
 
@@ -88,6 +88,7 @@ namespace ЧисленныМетоды.ViewModels
 
             eventAndMethodViewModels = new EventAndMethodViewModels();
 
+            mainWindow.mainFrame.Navigate(new ЧисленныМетоды.Result());
         }
 
         private void SimplexCanvas_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)

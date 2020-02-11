@@ -207,6 +207,7 @@ namespace ЧисленныМетоды.ViewModels
                 element.Visibility = Visibility.Collapsed;
                 stackPanelAnaliticForms.Children.Add(element);
             }
+
         }
 
         private void ComboBoxIElements_SelectionChanged(object sender, SelectionChangedEventArgs e)
