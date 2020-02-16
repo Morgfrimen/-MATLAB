@@ -30,7 +30,62 @@ namespace ЧисленныМетоды.Models
             var test1 = resultArray[2].ToArray();
         }
 
-        public LogicalCommon(params double[] arrays)
+        /// <summary>
+        /// Создаёт объект с решением симплекс задачи
+        /// </summary>
+        /// <param name="C">Коэффициенты целевой функции</param>
+        /// <param name="A">Коэффициенты при неравентсве</param>
+        /// <param name="B">Неравенство</param>
+        /// <param name="Aeq">Коэффициенты при равенстве</param>
+        /// <param name="Beq">Равенство</param>
+        /// <param name="lb">Минимум</param>
+        /// <param name="ub">Максимум</param>
+        public LogicalCommon(double[] C, double[,] A, double[] B, double[,] Aeq, double[] Beq, double[] lb, double[] ub )
+        {
+
+        }
+
+        /// <summary>
+        /// Создаёт объект с решением симплекс задачи
+        /// </summary>
+        /// <param name="C">Коэффициенты целевой функции</param>
+        /// <param name="A">Коэффициенты при неравентсве</param>
+        /// <param name="B">Неравенство</param>
+        /// <param name="Aeq">Коэффициенты при равенстве</param>
+        /// <param name="Beq">Равенство</param>
+        /// <param name="lb">Минимум</param>
+        /// <param name="ub">Максимум</param>
+        public LogicalCommon(double[] C, double[] A, double[] B, double[] Aeq, double[] Beq, double[] lb, double[] ub)
+        {
+
+        }
+
+        /// <summary>
+        /// Создаёт объект с решением симплекс задачи
+        /// </summary>
+        /// <param name="C">Коэффициенты целевой функции</param>
+        /// <param name="A">Коэффициенты при неравентсве</param>
+        /// <param name="B">Неравенство</param>
+        /// <param name="Aeq">Коэффициенты при равенстве</param>
+        /// <param name="Beq">Равенство</param>
+        /// <param name="lb">Минимум</param>
+        /// <param name="ub">Максимум</param>
+        public LogicalCommon(double[] C, double[,] A, double[] B, double[] Aeq, double[] Beq, double[] lb, double[] ub)
+        {
+
+        }
+
+        /// <summary>
+        /// Создаёт объект с решением симплекс задачи
+        /// </summary>
+        /// <param name="C">Коэффициенты целевой функции</param>
+        /// <param name="A">Коэффициенты при неравентсве</param>
+        /// <param name="B">Неравенство</param>
+        /// <param name="Aeq">Коэффициенты при равенстве</param>
+        /// <param name="Beq">Равенство</param>
+        /// <param name="lb">Минимум</param>
+        /// <param name="ub">Максимум</param>
+        public LogicalCommon(double[] C, double[] A, double[] B, double[,] Aeq, double[] Beq, double[] lb, double[] ub)
         {
 
         }

@@ -46,11 +46,13 @@ namespace ЧисленныМетоды.ViewModels
         private double[] ZList;
         public ViewModels()
         {
+#if DEBUG
             Task.Run(() =>
-            {
-                logicalCommon = new LogicalCommon();
-                logicalCommon.Dispose();
-            });
+    {
+        logicalCommon = new LogicalCommon();
+        logicalCommon.Dispose();
+    }); 
+#endif
             resourceDictionary = App.Current.Resources;
             CultureInfo cultureInfo = CultureInfo.CurrentCulture;
             switch (cultureInfo.ToString().ToLower())
@@ -80,7 +82,7 @@ namespace ЧисленныМетоды.ViewModels
             {
                 case Visibility.Collapsed:
                 case Visibility.Hidden:
-                    zFuction.Visibility = Visibility.Visible;
+                    zFuction = new AddZFuction(CountX, this);
                     zFuction.Show();
                     break;
                 default:
@@ -128,10 +130,9 @@ namespace ЧисленныМетоды.ViewModels
             mainWindow.mainFrame.Navigate(new ЧисленныМетоды.Result());
 
             mainWindow.AddZList.Click += AddZList_Click;
+            mainWindow.AddZFucrionAnalitic.Click += AddZList_Click;
 
             mainWindow.Closing += MainWindow_Closing;
-
-
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)

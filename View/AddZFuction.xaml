@@ -12,7 +12,7 @@
     <Border BorderBrush="Black" BorderThickness="1">
         <StackPanel >
             <Label Content="Коэффициенты целевой функции"/>
-            <DockPanel Height="200" Width="500" x:Name="DockPanelZFuction">
+            <DockPanel Height="170" Width="500" x:Name="DockPanelZFuction">
                 <Button DockPanel.Dock="Bottom" Content="Закрыть" Click="CloseButton"/>
                 <Button DockPanel.Dock="Bottom" 
                         Content="Сохранить" 

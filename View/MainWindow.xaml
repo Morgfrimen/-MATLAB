@@ -115,6 +115,9 @@
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
                                 MinWidth="70"/>
+                        <Button x:Name="AddZFucrionAnalitic" DockPanel.Dock="Bottom" VerticalAlignment="Bottom"
+                                Content="Добавить коэффициенты целевой функции"
+                                HorizontalAlignment="Left"/>
                     </DockPanel>
 
                     <!--<DataGrid x:Name="DataGridAnaliticView"></DataGrid>-->

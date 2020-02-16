@@ -19,7 +19,7 @@ namespace ЧисленныМетоды
     {
         private ViewModels.ViewModels viewModels;
 
-        internal StackPanel stackPanel2 = new StackPanel(){Orientation = Orientation.Horizontal};
+        internal StackPanel stackPanel2 = new StackPanel(){Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Top};
 
         private List<TextBox> listTextBlocks = new List<TextBox>();
 
@@ -29,9 +29,9 @@ namespace ЧисленныМетоды
             InitializeComponent();
             viewModels = vm;
             this.countX = countX;
-            DockPanelZFuction.Children.Clear();
+            DockPanelZFuction.Children.RemoveRange(2,2);
             listTextBlocks.Clear();
-            StackPanel stackPanel1 = new StackPanel() {Orientation = Orientation.Horizontal};
+            StackPanel stackPanel1 = new StackPanel() {Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Top};
             for (int i = 0; i < countX; i++)
             {
                 TextBlock z = new TextBlock() { Height = 25, Width = 35, 
@@ -49,7 +49,7 @@ namespace ЧисленныМетоды
                stackPanel2.Children.Add(z);
             }
             DockPanelZFuction.Children.Add(stackPanel2);
-            DockPanel.SetDock(stackPanel2,Dock.Bottom);
+            DockPanel.SetDock(stackPanel2,Dock.Top);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)

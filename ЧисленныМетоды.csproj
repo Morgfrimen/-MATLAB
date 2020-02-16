@@ -36,7 +36,7 @@
       <HintPath>Models\Matlab\application\DoubleSimplexMethod.dll</HintPath>
     </Reference>
     <Reference Include="MWArray">
-      <HintPath>..\..\..\MathLab\toolbox\dotnetbuilder\bin\win64\v4.0\MWArray.dll</HintPath>
+      <HintPath>Models\MWArray.dll</HintPath>
     </Reference>
     <!--<Reference Include="WebFiguresService">
       <HintPath>..\..\..\MathLab\toolbox\dotnetbuilder\bin\win64\v4.0\WebFiguresService.dll</HintPath>
