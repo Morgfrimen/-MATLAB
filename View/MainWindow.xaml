@@ -8,7 +8,7 @@
         xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
         mc:Ignorable="d"
         Title="{DynamicResource mainWindow_Title}" MinHeight="480" 
-        MinWidth="800">
+        MinWidth="1200">
     <Window.DataContext>
         <VM:ViewModels></VM:ViewModels>
     </Window.DataContext>
@@ -60,7 +60,6 @@
                                              Content=".docx" VerticalAlignment="Center"/>
                             </StackPanel>
                         </DockPanel>
-
                     </StackPanel>
 
                 </TabItem>
@@ -91,6 +90,7 @@
                                      Text="{Binding CountX,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
 
                             </TextBox>
+                            <Button x:Name="AddZList" Margin="20,0,0,0" Content="Добавить коэффициенты целевой функции"/>
                             <Button DockPanel.Dock="Right" Content="Расчет" 
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"

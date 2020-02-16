@@ -14,6 +14,7 @@ using System.Windows.Media;
 using ЧисленныМетоды.Models;
 using ЧисленныМетоды.Models.SimplexNethod_AnalitycInput;
 using ЧисленныМетоды.Models.SinplexMethod_GraphicInput;
+using GC = System.GC;
 
 namespace ЧисленныМетоды.ViewModels
 {
@@ -29,7 +30,8 @@ namespace ЧисленныМетоды.ViewModels
         private ResourceDictionary resourceDictionary;
 
         private ICollection resourseCollection;
-        
+
+        private ЧисленныМетоды.AddZFuction zFuction;
 
         protected MainWindow mainWindow;
         private static Config config = Config.Default;
@@ -40,9 +42,15 @@ namespace ЧисленныМетоды.ViewModels
         private LogicalCommon logicalCommon;
 
         private byte? _countX;
+
+        private double[] ZList;
         public ViewModels()
         {
-            Task.Run(() => logicalCommon = new LogicalCommon());
+            Task.Run(() =>
+            {
+                logicalCommon = new LogicalCommon();
+                logicalCommon.Dispose();
+            });
             resourceDictionary = App.Current.Resources;
             CultureInfo cultureInfo = CultureInfo.CurrentCulture;
             switch (cultureInfo.ToString().ToLower())
@@ -55,8 +63,18 @@ namespace ЧисленныМетоды.ViewModels
                     break;
             }
             mainWindow = App.Current.MainWindow as MainWindow;
-            analizate=new Analizate();
+            analizate = new Analizate();
             mainWindow.Loaded += MainWindow_Loaded;
+        }
+
+        private void AddZList_Click(object sender, RoutedEventArgs e)
+        {
+            zFuction = zFuction == null ? new AddZFuction(CountX) : zFuction ;
+            if (!zFuction.IsLoaded)
+            {
+                zFuction = new AddZFuction(CountX);
+                zFuction.Show(); 
+            }
         }
 
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -94,7 +112,9 @@ namespace ЧисленныМетоды.ViewModels
 
             mainWindow.mainFrame.Navigate(new ЧисленныМетоды.Result());
 
-            
+            mainWindow.AddZList.Click += AddZList_Click;
+
+
         }
 
         private void SimplexCanvas_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
@@ -156,6 +176,9 @@ namespace ЧисленныМетоды.ViewModels
             set { _brushForeground = value; OnPropertyChanged(nameof(ColorThemeForeground)); }
         }
 
+        
+
+
         public byte? CountX
         {
             get => _countX;
@@ -164,6 +187,7 @@ namespace ЧисленныМетоды.ViewModels
                 if (value >= 0)
                 {
                     _countX = ReturnValid(value);
+                    ZList = new double[_countX.Value];
                     OnPropertyChanged(nameof(CountX));
                 }
             }

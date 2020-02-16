@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using MathWorks.MATLAB.NET.Utility;
+//using MathWorks.MATLAB.NET.Utility;
 using MathWorks.MATLAB.NET.Arrays;
 using ds=DoubleSimplexMethod.DoubleSimplexMethod;
-using DoubleSimplexMethodNative;
 
 namespace ЧисленныМетоды.Models
 {
-    public class LogicalCommon
+    public class LogicalCommon : IDisposable
     {
         //public readonly ds.DoubleSimplexMethod doubleSimplexMethod;
-        public MWArray resultArray = null;
-        public MWNumericArray[] resultNumericArrays = null;
+        public MWArray resultArray = null; 
 
+        /// <summary>
+        /// Тестовый конструктор
+        /// </summary>
         public LogicalCommon()
         {
             //MathWorks.MATLAB.NET.Utility.MWMCR mwmcr = new MWMCR("DoubleSimplexMethod.dll", @"D:\Программирование\ЧисленныеМетоды\ЧисленныМетоды\Models\Matlab\application",true);
@@ -27,19 +25,19 @@ namespace ЧисленныМетоды.Models
             MWNumericArray lb = new MWNumericArray(new double[] { 0,0 });
             //resultArray = new MWNumericArray().DualSimplex(C,A,B, Aeq, Beq, lb,null);
             var dsss = new ds();
-            
-            MWArray res = dsss.DualSimplex(C, A, B, Aeq, Beq, lb, new MWNumericArray());
-            var test = res.IsNumericArray;
-            var test1 = res.NumberOfElements;
-            var test2 = res.NumberofDimensions;
+            resultArray = dsss.DualSimplex(C, A, B, Aeq, Beq, lb, new MWNumericArray());
+            var test = resultArray[1].ToArray();
+            var test1 = resultArray[2].ToArray();
+        }
 
-            dsss.Dispose();
-            C.Dispose();
-            A.Dispose();
-            B.Dispose();
-            Aeq.Dispose();
-            Beq.Dispose();
-            lb.Dispose();
+        public LogicalCommon(params double[] arrays)
+        {
+
+        }
+
+        public void Dispose()
+        {
+            resultArray?.Dispose();
         }
     }
 }

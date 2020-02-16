@@ -35,9 +35,6 @@
     <Reference Include="DoubleSimplexMethod">
       <HintPath>Models\Matlab\application\DoubleSimplexMethod.dll</HintPath>
     </Reference>
-    <Reference Include="DoubleSimplexMethodNative">
-      <HintPath>..\DoubleSimplexMethodNative.dll</HintPath>
-    </Reference>
     <Reference Include="MWArray">
       <HintPath>..\..\..\MathLab\toolbox\dotnetbuilder\bin\win64\v4.0\MWArray.dll</HintPath>
     </Reference>
