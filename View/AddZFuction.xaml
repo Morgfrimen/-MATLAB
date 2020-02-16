@@ -5,11 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ЧисленныМетоды"
         mc:Ignorable="d"
-        Height="250" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
-    <StackPanel >
-        <Label Content="Коэффициенты целевой функции"/>
-        <DockPanel Height="150" Width="500" x:Name="DockPanelZFuction"/>
-        <Button Content="Сохранить" Click="ButtonBase_OnClick"/>
-        <Button Content="Закрыть" Click="exitBase_OnClick"/>
-    </StackPanel>
+        Height="250" Width="500" ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen" Deactivated="Window_Deactivated" WindowStyle="ToolWindow"
+        
+        >
+    <Border BorderBrush="Black" BorderThickness="1">
+        <StackPanel >
+            <Label Content="Коэффициенты целевой функции"/>
+            <DockPanel Height="150" Width="500" x:Name="DockPanelZFuction"/>
+            <Button Content="Сохранить" Click="ButtonBase_OnClick"/>
+            <Button Content="Закрыть" Click="exitBase_OnClick"/>
+        </StackPanel>
+    </Border>
 </Window>

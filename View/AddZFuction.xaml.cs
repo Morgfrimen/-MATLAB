@@ -17,35 +17,60 @@ namespace ЧисленныМетоды
     /// </summary>
     public partial class AddZFuction : Window
     {
+        private ViewModels.ViewModels viewModels;
+
+        internal StackPanel stackPanel2 = new StackPanel(){Orientation = Orientation.Horizontal};
+
+        private List<TextBox> listTextBlocks = new List<TextBox>();
+
         private byte? countX = null;
-        public AddZFuction(byte? countX)
+        public AddZFuction(byte? countX,ViewModels.ViewModels vm)
         {
             InitializeComponent();
+            viewModels = vm;
             this.countX = countX;
             DockPanelZFuction.Children.Clear();
+            listTextBlocks.Clear();
+            StackPanel stackPanel1 = new StackPanel() {Orientation = Orientation.Horizontal};
+            for (int i = 0; i < countX; i++)
+            {
+                TextBlock z = new TextBlock() { Height = 25, Width = 35, 
+                    Margin = new Thickness(5, 0, 0, 5), Text = $"x{i+1}", 
+                    HorizontalAlignment = HorizontalAlignment.Left
+                };
+                stackPanel1.Children.Add(z);
+            }
+            DockPanelZFuction.Children.Add(stackPanel1);
+            DockPanel.SetDock(stackPanel1,Dock.Top);
             for (int i = 0; i < countX; i++)
             {
                TextBox z = new TextBox() {Height = 25, Width = 35, Margin = new Thickness(5,0,0,5), Text = "0", HorizontalAlignment = HorizontalAlignment.Left};
-               DockPanelZFuction.Children.Add(z);
+               listTextBlocks.Add(z);
+               stackPanel2.Children.Add(z);
             }
-            
-
+            DockPanelZFuction.Children.Add(stackPanel2);
+            DockPanel.SetDock(stackPanel2,Dock.Bottom);
         }
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             if (countX != null)
             {
-                double[] z = new double[(int)countX];
-                for (int i = 0; i < DockPanelZFuction.Children.Count; i++)
+                double[] z = new double[(int)countX]; 
+                for (int i = 0; i < stackPanel2.Children.Count; i++)
                 {
-                    TextBox zBox = DockPanelZFuction.Children[i] as TextBox;
-                    z[i] = Double.Parse(zBox.Text);
-                }
+                    z[i] = Double.Parse(listTextBlocks[i].Text);
+                } 
+                viewModels.ZArrays = z;  
             }
         }
 
         private void exitBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Window_Deactivated(object sender, EventArgs e)
         {
             this.Close();
         }

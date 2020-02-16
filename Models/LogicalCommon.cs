@@ -38,6 +38,7 @@ namespace ЧисленныМетоды.Models
         public void Dispose()
         {
             resultArray?.Dispose();
+            
         }
     }
 }

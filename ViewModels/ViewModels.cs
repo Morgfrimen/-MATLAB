@@ -69,10 +69,10 @@ namespace ЧисленныМетоды.ViewModels
 
         private void AddZList_Click(object sender, RoutedEventArgs e)
         {
-            zFuction = zFuction == null ? new AddZFuction(CountX) : zFuction ;
+            zFuction = zFuction == null ? new AddZFuction(CountX,this) : zFuction ;
             if (!zFuction.IsLoaded)
             {
-                zFuction = new AddZFuction(CountX);
+                zFuction = new AddZFuction(CountX, this);
                 zFuction.Show(); 
             }
         }
@@ -114,7 +114,16 @@ namespace ЧисленныМетоды.ViewModels
 
             mainWindow.AddZList.Click += AddZList_Click;
 
+            mainWindow.Closing += MainWindow_Closing;
 
+
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            logicalCommon.Dispose(); 
+            if(zFuction != null && zFuction.IsLoaded)
+                zFuction.Close();
         }
 
         private void SimplexCanvas_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
@@ -176,7 +185,16 @@ namespace ЧисленныМетоды.ViewModels
             set { _brushForeground = value; OnPropertyChanged(nameof(ColorThemeForeground)); }
         }
 
-        
+        private double[] zArray;
+        public double[] ZArrays
+        {
+            get => zArray;
+            set
+            {
+                zArray = value;
+                OnPropertyChanged(nameof(ZArrays));
+            }
+        }
 
 
         public byte? CountX
@@ -279,7 +297,7 @@ namespace ЧисленныМетоды.ViewModels
        
 
         public string FindObjResourseLanguage(string key) => mainWindow.FindResource(key).ToString();
-        
+                                 
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
