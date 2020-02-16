@@ -34,9 +34,9 @@ namespace ЧисленныМетоды.ViewModels
             set => _e = value;
         }
 
-        private float? sumPmax = 0f;
+        private double sumPmax = 0f;
 
-        public float? SumPmax
+        public double SumPmax
         {
             get => sumPmax;
             set
@@ -46,9 +46,9 @@ namespace ЧисленныМетоды.ViewModels
             }
         }
 
-        private float? maxTPmax = 0f;
+        private double maxTPmax = 0f;
 
-        public float? MaxTPmax
+        public double MaxTPmax
         {
             get => maxTPmax;
             set

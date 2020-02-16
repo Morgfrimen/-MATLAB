@@ -23,14 +23,14 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
 
         private string name;
 
-        private float? _pMax = 0;
-        private float? _T = 0;
-        public float? PMax
+        private double _pMax = 0;
+        private double _T = 0;
+        public double PMax
         {
             get => _pMax;
             set => _pMax = value;
         }
-        public float? T
+        public double T
         {
             get => _T;
             set => _T = value;

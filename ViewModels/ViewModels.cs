@@ -12,6 +12,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using ЧисленныМетоды.Models;
+using ЧисленныМетоды.Models.Commands;
 using ЧисленныМетоды.Models.SimplexNethod_AnalitycInput;
 using ЧисленныМетоды.Models.SinplexMethod_GraphicInput;
 using GC = System.GC;
@@ -21,6 +22,8 @@ namespace ЧисленныМетоды.ViewModels
     //TODO: Перенести события и методы в другой файл - так я думаю будет лучше и не каша
     public class ViewModels : INotifyPropertyChanged
     {
+        public ArrayList res;
+
         private EventAndMethodViewModels eventAndMethodViewModels;
 
         private const byte MaxCountX = 10;
@@ -39,20 +42,13 @@ namespace ЧисленныМетоды.ViewModels
 
         private Canvas simplexCanvas;
 
-        private LogicalCommon logicalCommon;
+        private LogicalSimplexMethodRun _logicalSimplexMethodRun;
 
         private byte? _countX;
 
         private double[] ZList;
         public ViewModels()
         {
-#if DEBUG
-            Task.Run(() =>
-    {
-        logicalCommon = new LogicalCommon();
-        logicalCommon.Dispose();
-    }); 
-#endif
             resourceDictionary = App.Current.Resources;
             CultureInfo cultureInfo = CultureInfo.CurrentCulture;
             switch (cultureInfo.ToString().ToLower())
@@ -137,7 +133,7 @@ namespace ЧисленныМетоды.ViewModels
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            logicalCommon.Dispose(); 
+            _logicalSimplexMethodRun.Dispose(); 
             if(this.zFuction != null && this.zFuction.IsLoaded)
                 this.zFuction.Close();
             
@@ -311,6 +307,19 @@ namespace ЧисленныМетоды.ViewModels
             
         }
 
+
+        private CommandsRunSimplexMethod commandsRunSimplex;
+
+        public CommandsRunSimplexMethod CommandsRunSimplex 
+        {
+            get
+            {
+                commandsRunSimplex = commandsRunSimplex == null ? new CommandsRunSimplexMethod() : commandsRunSimplex;
+                return commandsRunSimplex;
+            }
+        }
+
+        
        
 
         public string FindObjResourseLanguage(string key) => mainWindow.FindResource(key).ToString();

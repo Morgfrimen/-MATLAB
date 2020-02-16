@@ -91,10 +91,12 @@
 
                             </TextBox>
                             <Button x:Name="AddZList" Margin="20,0,0,0" Content="Добавить коэффициенты целевой функции"/>
-                            <Button DockPanel.Dock="Right" Content="Расчет" 
+                            <Button DockPanel.Dock="Right" 
+                                    Content="Расчет" 
                                     HorizontalAlignment="Right"
                                     VerticalAlignment="Bottom"
-                                    MinWidth="70"/>
+                                    MinWidth="70"
+                                    Command="{Binding CommandsRunSimplex}"/>
                         </DockPanel>
                     </DockPanel>
 
@@ -111,10 +113,11 @@
 
                             </DockPanel>
                         </StackPanel>
-                        <Button DockPanel.Dock="Right" Content="Расчет" 
+                        <Button DockPanel.Dock="Right" Content="Расчет"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Bottom"
-                                MinWidth="70"/>
+                                MinWidth="70"
+                                Command="{Binding CommandsRunSimplex}"/>
                         <Button x:Name="AddZFucrionAnalitic" DockPanel.Dock="Bottom" VerticalAlignment="Bottom"
                                 Content="Добавить коэффициенты целевой функции"
                                 HorizontalAlignment="Left"/>

@@ -28,27 +28,27 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
 
         private string name;
 
-        private float? _pMax = 0;
-        private float? _k0 = 0;
-        private float? _T = 0;
-        private float? _y = 0;
+        private double _pMax = 0;
+        private double _k0 = 0;
+        private double _T = 0;
+        private double _y = 0;
 
-        public float? PMax
+        public double PMax
         {
             get => _pMax;
             set => _pMax = value;
         }
-        public float? K0
+        public double K0
         {
             get => _k0;
             set => _k0 = value;
         }
-        public float? T
+        public double T
         {
             get => _T;
             set => _T = value;
         }
-        public float? Y
+        public double Y
         {
             get => _y;
             set => _y = value;

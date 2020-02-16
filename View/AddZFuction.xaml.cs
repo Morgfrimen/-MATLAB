@@ -59,7 +59,36 @@ namespace ЧисленныМетоды
                 double[] z = new double[(int)countX]; 
                 for (int i = 0; i < stackPanel2.Children.Count; i++)
                 {
-                    z[i] = Double.Parse(listTextBlocks[i].Text);
+                    try
+                    {
+                        z[i] = Double.Parse(listTextBlocks[i].Text);
+                    }
+                    catch (Exception)
+                    {
+                        foreach (char c in listTextBlocks[i].Text)
+                        {
+                            if (c == '.')
+                            {
+                                listTextBlocks[i].Text = listTextBlocks[i].Text.Replace(".", ",");
+                            }
+                        }
+
+                        try
+                        {
+                            z[i] = Double.Parse(listTextBlocks[i].Text);
+                        }
+                        catch (Exception exception)
+                        {
+                            listTextBlocks[i].Text = "0";
+                            this.Deactivated -= this.Window_Deactivated;
+                            var res = MessageBox.Show("Не правильный формат строки!" + Environment.NewLine + exception.Message + Environment.NewLine + exception.Source,
+                                "Ошибка" , MessageBoxButton.OK, MessageBoxImage.Error);
+                            if(res == MessageBoxResult.OK)
+                                this.Deactivated += this.Window_Deactivated;
+                            return;
+                        }
+
+                    }
                 } 
                 viewModels.ZArrays = z;  
             }
