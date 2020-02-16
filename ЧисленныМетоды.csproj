@@ -2,18 +2,23 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <PublishSingleFile>true</PublishSingleFile>
+    <!--<PublishSingleFile>true</PublishSingleFile>
     <RuntimeIdentifier>win-x86</RuntimeIdentifier>
-    <PublishTrimmed>true</PublishTrimmed> <!--TODO: потом собрать установщик-->
+    <PublishTrimmed>true</PublishTrimmed> --><!--TODO: потом собрать установщик-->
     <StartupObject>ЧисленныМетоды.App</StartupObject>
     <NeutralLanguage>ru-RU</NeutralLanguage>
     <Version>0.0.1</Version>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Optimize>true</Optimize>
   </PropertyGroup>
 
@@ -24,6 +29,21 @@
 
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DoubleSimplexMethod">
+      <HintPath>Models\Matlab\application\DoubleSimplexMethod.dll</HintPath>
+    </Reference>
+    <Reference Include="DoubleSimplexMethodNative">
+      <HintPath>..\DoubleSimplexMethodNative.dll</HintPath>
+    </Reference>
+    <Reference Include="MWArray">
+      <HintPath>..\..\..\MathLab\toolbox\dotnetbuilder\bin\win64\v4.0\MWArray.dll</HintPath>
+    </Reference>
+    <!--<Reference Include="WebFiguresService">
+      <HintPath>..\..\..\MathLab\toolbox\dotnetbuilder\bin\win64\v4.0\WebFiguresService.dll</HintPath>
+    </Reference>-->
   </ItemGroup>
 
   <ItemGroup>

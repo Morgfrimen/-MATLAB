@@ -11,6 +11,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using ЧисленныМетоды.Models;
 using ЧисленныМетоды.Models.SimplexNethod_AnalitycInput;
 using ЧисленныМетоды.Models.SinplexMethod_GraphicInput;
 
@@ -36,9 +37,12 @@ namespace ЧисленныМетоды.ViewModels
 
         private Canvas simplexCanvas;
 
+        private LogicalCommon logicalCommon;
+
         private byte? _countX;
         public ViewModels()
         {
+            Task.Run(() => logicalCommon = new LogicalCommon());
             resourceDictionary = App.Current.Resources;
             CultureInfo cultureInfo = CultureInfo.CurrentCulture;
             switch (cultureInfo.ToString().ToLower())
@@ -89,6 +93,8 @@ namespace ЧисленныМетоды.ViewModels
             eventAndMethodViewModels = new EventAndMethodViewModels();
 
             mainWindow.mainFrame.Navigate(new ЧисленныМетоды.Result());
+
+            
         }
 
         private void SimplexCanvas_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
