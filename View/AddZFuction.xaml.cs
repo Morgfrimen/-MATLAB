@@ -35,7 +35,7 @@ namespace ЧисленныМетоды
             for (int i = 0; i < countX; i++)
             {
                 TextBlock z = new TextBlock() { Height = 25, Width = 35, 
-                    Margin = new Thickness(5, 0, 0, 5), Text = $"x{i+1}", 
+                    Margin = new Thickness(5, 0, 0, 5), Text = $"X{i+1}", 
                     HorizontalAlignment = HorizontalAlignment.Left
                 };
                 stackPanel1.Children.Add(z);
@@ -64,13 +64,20 @@ namespace ЧисленныМетоды
                 viewModels.ZArrays = z;  
             }
         }
-
-        private void exitBase_OnClick(object sender, RoutedEventArgs e)
+        private void Window_Deactivated(object sender, EventArgs e)
         {
-            
+            try
+            {
+                this.Close();
+            }
+            catch
+            {
+                this.Hide();
+                this.Close();
+            }
         }
 
-        private void Window_Deactivated(object sender, EventArgs e)
+        private void CloseButton(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

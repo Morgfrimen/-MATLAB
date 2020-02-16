@@ -12,9 +12,16 @@
     <Border BorderBrush="Black" BorderThickness="1">
         <StackPanel >
             <Label Content="Коэффициенты целевой функции"/>
-            <DockPanel Height="150" Width="500" x:Name="DockPanelZFuction"/>
-            <Button Content="Сохранить" Click="ButtonBase_OnClick"/>
-            <Button Content="Закрыть" Click="exitBase_OnClick"/>
+            <DockPanel Height="200" Width="500" x:Name="DockPanelZFuction">
+                <Button DockPanel.Dock="Bottom" Content="Закрыть" Click="CloseButton"/>
+                <Button DockPanel.Dock="Bottom" 
+                        Content="Сохранить" 
+                        Click="ButtonBase_OnClick"
+                        VerticalAlignment="Bottom"/>
+                
+            </DockPanel>
+            
+            
         </StackPanel>
     </Border>
 </Window>

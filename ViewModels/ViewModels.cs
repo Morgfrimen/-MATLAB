@@ -69,12 +69,27 @@ namespace ЧисленныМетоды.ViewModels
 
         private void AddZList_Click(object sender, RoutedEventArgs e)
         {
-            zFuction = zFuction == null ? new AddZFuction(CountX,this) : zFuction ;
-            if (!zFuction.IsLoaded)
+            if (zFuction == null)
             {
-                zFuction = new AddZFuction(CountX, this);
-                zFuction.Show(); 
+                zFuction = new AddZFuction(CountX,this);
+                zFuction.Show();
+                return;
             }
+
+            switch (zFuction.Visibility)
+            {
+                case Visibility.Collapsed:
+                case Visibility.Hidden:
+                    zFuction.Visibility = Visibility.Visible;
+                    zFuction.Show();
+                    break;
+                default:
+                    zFuction = null;
+                    zFuction = new AddZFuction(CountX,this);
+                    zFuction.Show();
+                    break;
+            }
+            
         }
 
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -122,8 +137,9 @@ namespace ЧисленныМетоды.ViewModels
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
             logicalCommon.Dispose(); 
-            if(zFuction != null && zFuction.IsLoaded)
-                zFuction.Close();
+            if(this.zFuction != null && this.zFuction.IsLoaded)
+                this.zFuction.Close();
+            
         }
 
         private void SimplexCanvas_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
