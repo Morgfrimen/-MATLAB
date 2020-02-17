@@ -8,6 +8,7 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using ЧисленныМетоды.Resourse;
 using Color = System.Drawing.Color;
 using Point = System.Drawing.Point;
 
@@ -58,7 +59,8 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
                         Binding binding = new Binding()
                         {
                             UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                            Source = this
+                            Source = this,
+                            Converter = new Resourse.Convecter()
                         };
                         switch (stackPanelIndex)
                         {

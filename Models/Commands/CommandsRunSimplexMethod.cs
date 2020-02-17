@@ -12,27 +12,11 @@ namespace ЧисленныМетоды.Models.Commands
 {
     public class CommandsRunSimplexMethod : ICommand
     {
-        private ArrayList list = new ArrayList();
-
-        /// <summary>
-        /// Контруктор команды
-        /// </summary>
-        /// <param name="list">ArrayList из всех параметров[C,A,B,Aeq,Beq,lb,ub]</param>
-        //public CommandsRunSimplexMethod()
-        //{
-        //    list = ViewModels.ViewModels.ViewModel.res;
-        //}
+        private ArrayList _list = new ArrayList();
 
         //TODO: Подумать про ограничение использования команды
         public bool CanExecute(object parameter)
         {
-            //bool? res = parameter as bool?;
-            //if (res != null)
-            //    return (bool) res;
-            //else
-            //{
-            //    return false;
-            //}
             return true;
         }
         
@@ -43,33 +27,33 @@ namespace ЧисленныМетоды.Models.Commands
 
         private void AsyncCommand()
         {
-            list.Clear();
-            List<IElements> IElemen = new List<IElements>();
+            _list.Clear();
+            List<IElements> elemen = new List<IElements>();
 
-            IElemen = ViewModels.ViewModels.ViewModel.IElementses;
+            elemen = ViewModels.ViewModels.ViewModel.IElementses;
 
-            if (list != null)
+            if (_list != null)
             {
-                list = list.GetArrayListing(IElemen);
+                _list = _list.GetArrayListing(elemen);
             }
             else
             {
-                list = new ArrayList();
-                list = list.GetArrayListing(IElemen);
+                _list = new ArrayList();
+                _list = _list.GetArrayListing(elemen);
             }
 
-            double[] C = list[0] as double[];
-            double[] B = list[2] as double[];
-            double[] Beq = list[4] as double[];
-            double[] lb = list[5] as double[];
-            double[] ub = list[6] as double[];
+            double[] c = _list[0] as double[];
+            double[] b = _list[2] as double[];
+            double[] beq = _list[4] as double[];
+            double[] lb = _list[5] as double[];
+            double[] ub = _list[6] as double[];
 
-            Array A = list[1] as Array;
-            Array Aeq = list[3] as Array;
+            Array a = _list[1] as Array;
+            Array aeq = _list[3] as Array;
 
             ViewModels.ViewModels.ViewModel.Task = new Task(()=> 
             {
-                new LogicalSimplexMethodRun().LogicalSimplexMethodRuns(C, A, B, Aeq, Beq, lb, ub);
+                new LogicalSimplexMethodRun().LogicalSimplexMethodRuns(c, a, b, aeq, beq, lb, ub);
 
             });
             ViewModels.ViewModels.ViewModel.Task.RunSynchronously();

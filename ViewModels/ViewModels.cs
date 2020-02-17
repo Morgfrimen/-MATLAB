@@ -64,6 +64,7 @@ namespace ЧисленныМетоды.ViewModels
             }
             mainWindow = App.Current.MainWindow as MainWindow;
             analizate = new Analizate();
+            var test = resourceDictionary.Values;
             mainWindow.Loaded += MainWindow_Loaded;
         }
 
@@ -135,7 +136,7 @@ namespace ЧисленныМетоды.ViewModels
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            _logicalSimplexMethodRun.Dispose(); 
+            _logicalSimplexMethodRun?.Dispose(); 
             if(this.zFuction != null && this.zFuction.IsLoaded)
                 this.zFuction.Close();
             

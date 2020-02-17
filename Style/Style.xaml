@@ -10,7 +10,7 @@
     </Style>
 
     <!--Светлая тема-->
-    <Style x:Key="BackGroundWhite">
+    <Style  x:Key="BackGroundWhite">
         <Setter Property="Control.Background" Value="{x:Null}" />
         <Setter Property="Control.Foreground" Value="{Binding Path=ColorThemeForeground, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
         <Setter Property="Panel.Background" Value="{Binding Path=ColorThemeBackground, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />

@@ -82,7 +82,8 @@ namespace ЧисленныМетоды.Models.SinplexMethod_GraphicInput
                         Binding binding = new Binding()
                         {
                             UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged,
-                            Source = this
+                            Source = this,
+                            Converter = new Resourse.Convecter()
                         };
                         switch (stackPanelIndex)
                         {

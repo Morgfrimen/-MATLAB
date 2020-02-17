@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ЧисленныМетоды"
         xmlns:VM ="clr-namespace:ЧисленныМетоды.ViewModels"
+        xmlns:Convecter ="clr-namespace:ЧисленныМетоды.Resourse"
         xmlns:controls="clr-namespace:WpfMath.Controls;assembly=WpfMath"
+        xmlns:commands="clr-namespace:ЧисленныМетоды.Models.Commands"
         mc:Ignorable="d"
         Title="{DynamicResource mainWindow_Title}" MinHeight="480" 
         MinWidth="1200">
@@ -13,11 +15,8 @@
         <VM:ViewModels></VM:ViewModels>
     </Window.DataContext>
     <Window.Resources>
-        <ResourceDictionary Source="../Style/Style.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="../Style/Style.xaml" />
     </Window.Resources>
-    <Window.Style>
-        <StaticResource ResourceKey="BackGroundWhite"></StaticResource>
-    </Window.Style>
 
     <TabControl>
         <TabItem Header="{DynamicResource simplexMethod_Title}" Height="20" VerticalAlignment="Top">
@@ -65,17 +64,18 @@
                 </TabItem>
                 <TabItem Header="{DynamicResource simplexMethod_Picture}">
                     <DockPanel Style="{StaticResource BackGroundWhite}">
-                        <Border DockPanel.Dock="Top"
-                                BorderThickness="1" 
-                                BorderBrush="#FF030303"
-                                Margin="0" VerticalAlignment="Stretch" 
-                                HorizontalAlignment="Stretch">
-                          <Canvas x:Name="CanvasSimplexMethod" 
-                                  Background="White">
-                             
-                            </Canvas>
+                        <DockPanel DockPanel.Dock="Top" 
+                                   VerticalAlignment="Bottom">
+                            <Border DockPanel.Dock="Top"
+                                    BorderThickness="1" 
+                                    BorderBrush="#FF030303"
+                                    >
+                                <Canvas x:Name="CanvasSimplexMethod" 
+                                        Background="White" MinHeight="400" 
+                                        />
 
-                        </Border>
+                            </Border>
+                        </DockPanel>
                         <DockPanel Style="{StaticResource BackGroundWhite}" 
                                    DockPanel.Dock="Top" 
                                    Height="25" 
