@@ -22,6 +22,8 @@ namespace ЧисленныМетоды.ViewModels
     //TODO: Перенести события и методы в другой файл - так я думаю будет лучше и не каша
     public class ViewModels : INotifyPropertyChanged
     {
+        public Task Task;
+
         public ArrayList res;
 
         private EventAndMethodViewModels eventAndMethodViewModels;
@@ -314,6 +316,8 @@ namespace ЧисленныМетоды.ViewModels
         {
             get
             {
+                if(Task != null)
+                    Task.Dispose();
                 commandsRunSimplex = commandsRunSimplex == null ? new CommandsRunSimplexMethod() : commandsRunSimplex;
                 return commandsRunSimplex;
             }

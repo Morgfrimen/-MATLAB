@@ -61,7 +61,7 @@ namespace ЧисленныМетоды.Models.Commands
             {
                 IElements elements = elementses[i];
                 if (elements is Nagruzca)
-                    B[0] = (elements as Nagruzca).T * (elements as Nagruzca).PMax / 1000;
+                    Beq[0] = (elements as Nagruzca).T;
             }
             resultArrayList.Add(Beq);
 

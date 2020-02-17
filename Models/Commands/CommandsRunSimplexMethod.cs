@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls.Ribbon;
 using System.Windows.Input;
 using ЧисленныМетоды.Models.SinplexMethod_GraphicInput;
 
@@ -42,6 +43,7 @@ namespace ЧисленныМетоды.Models.Commands
 
         private void AsyncCommand()
         {
+            list.Clear();
             List<IElements> IElemen = new List<IElements>();
 
             IElemen = ViewModels.ViewModels.ViewModel.IElementses;
@@ -65,12 +67,13 @@ namespace ЧисленныМетоды.Models.Commands
             Array A = list[1] as Array;
             Array Aeq = list[3] as Array;
 
-            Task.Run(() =>
+            ViewModels.ViewModels.ViewModel.Task = new Task(()=> 
             {
-                LogicalSimplexMethodRun logicalSimplexMethodRun =
-                    new LogicalSimplexMethodRun(C, A, B, Aeq, Beq, lb, ub);
+                new LogicalSimplexMethodRun().LogicalSimplexMethodRuns(C, A, B, Aeq, Beq, lb, ub);
+
             });
-            //logicalSimplexMethodRun.Dispose();
+            ViewModels.ViewModels.ViewModel.Task.RunSynchronously();
+            
 #if DEBUG
             MessageBox.Show("Собрался классец с решением");
 #endif
