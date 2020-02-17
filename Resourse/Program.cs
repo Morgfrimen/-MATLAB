@@ -343,6 +343,8 @@ namespace Simplex2._0
             Console.Write("\n");
 
         }
+
+        //TODO: Вытащить этот метод и адаптировать к моей программе
         static void СИМПЛЕКСТАБЛИЦАSTRING(int[] БАЗИС, double[] B, double[,] A, double[] C, int n, int m, double Z,string named,int formated)
         {
             if (formated == 2)
