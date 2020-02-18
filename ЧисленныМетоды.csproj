@@ -33,8 +33,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="DoubleSimplexMethod">
-      <HintPath>Models\Matlab\application\DoubleSimplexMethod.dll</HintPath>
+    <Reference Include="DualSimplex">
+      <HintPath>..\Matlab\DualSimplex\for_testing\DualSimplex.dll</HintPath>
     </Reference>
     <Reference Include="MWArray">
       <HintPath>Models\MWArray.dll</HintPath>

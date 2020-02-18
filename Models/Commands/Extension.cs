@@ -21,6 +21,11 @@ namespace ЧисленныМетоды.Models.Commands
         public static ArrayList GetArrayListing(this ArrayList resultArrayList, List<IElements> elementses)
         {
             int lev = elementses.Count;
+            if (lev <= 1)
+            {
+                MessageBox.Show("Не заданны генераторы!");
+                return null;
+            }
             //Обработка коэффициентов целевой функции
             if (ViewModels.ViewModels.ViewModel.ZArrays == null)
             {

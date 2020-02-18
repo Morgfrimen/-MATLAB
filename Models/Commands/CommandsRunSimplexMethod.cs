@@ -27,7 +27,7 @@ namespace ЧисленныМетоды.Models.Commands
 
         private void AsyncCommand()
         {
-            _list.Clear();
+            _list?.Clear();
             List<IElements> elemen = new List<IElements>();
 
             elemen = ViewModels.ViewModels.ViewModel.IElementses;
@@ -41,6 +41,8 @@ namespace ЧисленныМетоды.Models.Commands
                 _list = new ArrayList();
                 _list = _list.GetArrayListing(elemen);
             }
+            if(_list == null)
+                return;
 
             double[] c = _list[0] as double[];
             double[] b = _list[2] as double[];
@@ -51,9 +53,11 @@ namespace ЧисленныМетоды.Models.Commands
             Array a = _list[1] as Array;
             Array aeq = _list[3] as Array;
 
+            Array resultSimplexMethod = ViewModels.ViewModels.ViewModel.ResultArray;
+
             ViewModels.ViewModels.ViewModel.Task = new Task(()=> 
             {
-                new LogicalSimplexMethodRun().LogicalSimplexMethodRuns(c, a, b, aeq, beq, lb, ub);
+                new LogicalSimplexMethodRun().LogicalSimplexMethodRuns(c, a, b, aeq, beq, lb, ub, out resultSimplexMethod);
 
             });
             ViewModels.ViewModels.ViewModel.Task.RunSynchronously();

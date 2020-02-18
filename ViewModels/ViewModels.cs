@@ -24,7 +24,15 @@ namespace ЧисленныМетоды.ViewModels
     {
         public Task Task;
 
-        public ArrayList res;
+        
+
+        private Array res;
+
+        public Array ResultArray
+        {
+            get => res;
+            set => res = value;
+        }
 
         private EventAndMethodViewModels eventAndMethodViewModels;
 
@@ -132,11 +140,14 @@ namespace ЧисленныМетоды.ViewModels
             mainWindow.AddZFucrionAnalitic.Click += AddZList_Click;
 
             mainWindow.Closing += MainWindow_Closing;
+
+            mainWindow.FileName.Text = $@"C:\Users\{Environment.UserName}\Documents";
+
         }
 
         private void MainWindow_Closing(object sender, CancelEventArgs e)
         {
-            _logicalSimplexMethodRun?.Dispose(); 
+           
             if(this.zFuction != null && this.zFuction.IsLoaded)
                 this.zFuction.Close();
             
@@ -239,6 +250,8 @@ namespace ЧисленныМетоды.ViewModels
             get => _elementses;
         }
 
+        
+
         public Canvas SimplexCanvas => simplexCanvas;
         //public DataGrid SimplexDataGrid => mainWindow.DataGridAnaliticView;
 
@@ -311,15 +324,15 @@ namespace ЧисленныМетоды.ViewModels
         }
 
 
-        private CommandsRunSimplexMethod commandsRunSimplex;
+        private CommandsRunSimplexMethod commandsRunSimplex = new CommandsRunSimplexMethod();
 
         public CommandsRunSimplexMethod CommandsRunSimplex 
         {
             get
             {
-                if(Task != null)
+                if (Task != null)
                     Task.Dispose();
-                commandsRunSimplex = commandsRunSimplex == null ? new CommandsRunSimplexMethod() : commandsRunSimplex;
+                //commandsRunSimplex = commandsRunSimplex == null ? new CommandsRunSimplexMethod() : commandsRunSimplex;
                 return commandsRunSimplex;
             }
         }

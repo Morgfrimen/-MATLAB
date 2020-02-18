@@ -22,20 +22,20 @@
         <TabItem Header="{DynamicResource simplexMethod_Title}" Height="20" VerticalAlignment="Top">
             <TabControl TabStripPlacement="Right" >
                 <TabControl.Resources>
-                        <Style TargetType="{x:Type TabItem}">
-                            <Setter Property="HeaderTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <ContentPresenter Content="{TemplateBinding Content}">
-                                            <ContentPresenter.LayoutTransform>
-                                                <RotateTransform Angle="90" />
-                                            </ContentPresenter.LayoutTransform>
-                                        </ContentPresenter>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Setter Property="Padding" Value="3" />
-                        </Style>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="HeaderTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{TemplateBinding Content}">
+                                        <ContentPresenter.LayoutTransform>
+                                            <RotateTransform Angle="90" />
+                                        </ContentPresenter.LayoutTransform>
+                                    </ContentPresenter>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Padding" Value="3" />
+                    </Style>
                 </TabControl.Resources>
                 <TabItem Header="{DynamicResource simplexMethod_Config}">
                     <StackPanel x:Name="SimplexConfig"  
@@ -48,15 +48,32 @@
                         <DockPanel>
                             <Label Style="{StaticResource BackGroundWhite}" Content="{DynamicResource groupStudent}"></Label>
                             <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Center"></TextBox>
+
+                        </DockPanel>
+                        <DockPanel>
+                            <Label  Style="{StaticResource BackGroundWhite}" Content="Путь сохранения"></Label>
+                            <TextBox  Margin="0"
+                                x:Name="FileName" MinWidth="800"
+                                TextAlignment="Left"
+                                VerticalContentAlignment="Center"/>
+
+                            <Button Width="80"
+                                    Content="Обзор" 
+                                    HorizontalAlignment="Right"
+                                    Click="ShowButtonBase_OnClick"/>
                         </DockPanel>
                         <DockPanel>
                             <Label Style="{StaticResource BackGroundWhite}" Content="{DynamicResource outputSaveFile}"></Label>
                             <StackPanel Orientation="Horizontal" Style="{DynamicResource BackGroundWhite}">
                                 <RadioButton Style="{StaticResource RadioButtonStyle}" GroupName="SaveFile"
                                              Content=".txt" VerticalAlignment="Center"
-                                             Margin="5,0,15,0"/>
+                                             Margin="5,0,15,0"
+                                             IsChecked="True"
+                                             x:Name="CheckTXT"/>
                                 <RadioButton Style="{StaticResource RadioButtonStyle}"  GroupName="SaveFile"
-                                             Content=".docx" VerticalAlignment="Center"/>
+                                             Content=".docx"
+                                             VerticalAlignment="Center"
+                                             x:Name="CheckDOCX"/>
                             </StackPanel>
                         </DockPanel>
                     </StackPanel>

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace ЧисленныМетоды
 {
@@ -24,6 +25,25 @@ namespace ЧисленныМетоды
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void ShowButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog myDialog = new SaveFileDialog();
+            myDialog.Filter = "Текстовой документ(*.docx;*.txt)|*.docx;*.txt" + "|Все файлы (*.*)|*.* ";
+            myDialog.InitialDirectory = FileName.Text;
+            if (CheckTXT.IsChecked == true)
+            {
+                myDialog.DefaultExt = ".txt";
+            }
+            else
+            {
+                myDialog.DefaultExt = ".docx";
+            }
+            if (myDialog.ShowDialog() == true)
+            {
+                FileName.Text = myDialog.FileName;
+            }
         }
     }
 }

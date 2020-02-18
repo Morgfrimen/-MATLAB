@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:ЧисленныМетоды"
       xmlns:VM ="clr-namespace:ЧисленныМетоды.ViewModels"
       mc:Ignorable="d" 
-      Title="Result" >
+      Title="Result"  Background="White" >
     <Page.Resources>
         <ResourceDictionary Source="../Style/StylePageResult.xaml"></ResourceDictionary>
     </Page.Resources>
@@ -14,18 +14,18 @@
         <VM:ViewModelsResultPage/>
     </Page.DataContext>
 
-    <StackPanel>
-        <DockPanel>
-            <Label Content="Результат" Style="{StaticResource LabelPageResult}" />
-            <Label  Content="Привет мир" Style="{StaticResource LabelPageResult}" />
+    <DockPanel>
+        <DockPanel Dock="Top">
+            <Label Content="Для сохранения результата, нажмите на кнопку Сохранить"  Style="{StaticResource LabelPageResult}" />
         </DockPanel>
 
-        <DataGrid  x:Name="DataGridResult" MinWidth="100" MinHeight="350" />
-        <DockPanel HorizontalAlignment="Stretch"  >
-            <Button DockPanel.Dock="Left"  Height="30" Width="150" Content="Сохранить"/>
-            <Button DockPanel.Dock="Right" Width="50"  Height="30" Content="Отчет" HorizontalAlignment="Right"/>
+        <!--<DataGrid  x:Name="DataGridResult" MinWidth="100" MinHeight="350" />-->
+        <DockPanel Dock="Bottom" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" >
+            <Button DockPanel.Dock="Left"  Height="30" Width="150" Content="Сохранить"
+                    Click="SaveButton_Click"/>
+            <!--<Button DockPanel.Dock="Right" Width="50"  Height="30" Content="Отчет" HorizontalAlignment="Right"/>-->
         </DockPanel>
-    </StackPanel>
+    </DockPanel>
  
 
 

@@ -7,9 +7,10 @@ namespace ЧисленныМетоды.ViewModels
 {
     public class ViewModelsResultPage
     {
+        private readonly ViewModels vm;
         public ViewModelsResultPage()
         {
-            
+            vm = ViewModels.ViewModel;
         }
     }
 }
