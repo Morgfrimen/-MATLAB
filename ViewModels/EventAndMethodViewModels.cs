@@ -15,6 +15,7 @@ using ЧисленныМетоды.Models.SinplexMethod_GraphicInput;
 
 namespace ЧисленныМетоды.ViewModels
 {
+    //TODO: Ранний вариант программы - этот файл - прямое нарушение MVVM. Перенести этот код в другое место
     //В качестве идеи - добавить в аналитиику новые компоненты с перебиндинком с выбранному в комбо боксе элементу
     //и потом уже ограничения в онлайн режиме городить
     //TODO: перепилить и оптимизировать код для чтения
@@ -25,7 +26,7 @@ namespace ЧисленныМетоды.ViewModels
 
         private ЧисленныМетоды.ViewModels.ViewModels viewModels;
         private List<StackPanel> _analiticView = new List<StackPanel>();
-        private float _e= 0.12f;
+        private float _e = 0.12f;
         private List<IElements> listIElements;
 
         public float E
@@ -60,7 +61,7 @@ namespace ЧисленныМетоды.ViewModels
 
         public EventAndMethodViewModels()
         {
-            viewModels = ЧисленныМетоды.ViewModels.ViewModels.ViewModel; 
+            viewModels = ЧисленныМетоды.ViewModels.ViewModels.ViewModel;
             UpdateListElements();
         }
 
@@ -74,13 +75,14 @@ namespace ЧисленныМетоды.ViewModels
             var countX = viewModels.CountX;
             var listIElements = viewModels.IElementses;
 
-            stackPanelAnaliticForms.Children.RemoveRange(1,stackPanelAnaliticForms.Children.Count-1);
+            stackPanelAnaliticForms.Children.RemoveRange(1, stackPanelAnaliticForms.Children.Count - 1);
 
             ComboBox comboBoxIElements = new ComboBox();
             foreach (var element in listIElements)
             {
-                comboBoxIElements.Items.Add(new TextBlock(){Text = element.GetName()});
+                comboBoxIElements.Items.Add(new TextBlock() {Text = element.GetName()});
             }
+
             comboBoxIElements.SelectedIndex = 0;
 
             comboBoxIElements.SelectionChanged += ComboBoxIElements_SelectionChanged;
@@ -97,62 +99,67 @@ namespace ЧисленныМетоды.ViewModels
                 {
                     Generator generator = (listIElements[elemIndex] as Generator);
 
-                    TextBlock textBlock = new TextBlock(){Text = nameof(generator.PMax), 
-                        Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock") };
-                    TextBox textBox = new TextBox() {Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+                    TextBlock textBlock = new TextBlock()
+                    {
+                        Text = nameof(generator.PMax),
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
+                    };
+                    TextBox textBox = new TextBox()
+                    {
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex")
+                    };
 
-                    Binding bindingPmax = new Binding(){Source = generator,Path = new PropertyPath(nameof(generator.PMax)) };
+                    Binding bindingPmax =
+                        new Binding() {Source = generator, Path = new PropertyPath(nameof(generator.PMax))};
                     textBox.SetBinding(TextBox.TextProperty, bindingPmax);
 
                     TextBlock textBlockK0 = new TextBlock()
                     {
                         Text = nameof(generator.K0),
-                        Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
                     };
-                    TextBox textBoxK0 = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+                    TextBox textBoxK0 = new TextBox()
+                    {
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex")
+                    };
 
-                    Binding bindingK0 = new Binding() { Source = generator, Path = new PropertyPath(nameof(generator.K0)) };
+                    Binding bindingK0 =
+                        new Binding() {Source = generator, Path = new PropertyPath(nameof(generator.K0))};
                     textBoxK0.SetBinding(TextBox.TextProperty, bindingK0);
 
                     TextBlock textBlockT = new TextBlock()
                     {
                         Text = nameof(generator.T),
-                        Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
                     };
-                    TextBox textBoxT = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+                    TextBox textBoxT = new TextBox()
+                    {
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex")
+                    };
 
-                    Binding bindingT = new Binding() { Source = generator, Path = new PropertyPath(nameof(generator.T)) };
+                    Binding bindingT = new Binding() {Source = generator, Path = new PropertyPath(nameof(generator.T))};
                     textBoxT.SetBinding(TextBox.TextProperty, bindingT);
 
                     TextBlock textBlockY = new TextBlock()
                     {
                         Text = nameof(generator.Y),
-                        Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
                     };
-                    TextBox textBoxY = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+                    TextBox textBoxY = new TextBox()
+                    {
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex")
+                    };
 
-                    Binding bindingY = new Binding() { Source = generator, Path = new PropertyPath(nameof(generator.Y)) };
+                    Binding bindingY = new Binding() {Source = generator, Path = new PropertyPath(nameof(generator.Y))};
                     textBoxY.SetBinding(TextBox.TextProperty, bindingY);
 
-                    DockPanel stackPanelHorizontal1 = new DockPanel()
-                    {
-                        Children = {textBlock,textBox }
-                    };
+                    DockPanel stackPanelHorizontal1 = new DockPanel() {Children = {textBlock, textBox}};
 
-                    DockPanel stackPanelHorizontal2 = new DockPanel()
-                    { 
-                        Children = { textBlockK0, textBoxK0 }
-                    };
+                    DockPanel stackPanelHorizontal2 = new DockPanel() {Children = {textBlockK0, textBoxK0}};
 
-                    DockPanel stackPanelHorizontal3 = new DockPanel()
-                    {
-                        Children = { textBlockT, textBoxT }
-                    };
+                    DockPanel stackPanelHorizontal3 = new DockPanel() {Children = {textBlockT, textBoxT}};
 
-                    DockPanel stackPanelHorizontal4 = new DockPanel()
-                    {
-                        Children = { textBlockY, textBoxY }
-                    };
+                    DockPanel stackPanelHorizontal4 = new DockPanel() {Children = {textBlockY, textBoxY}};
 
                     stackPanel.Children.Add(stackPanelHorizontal1);
                     stackPanel.Children.Add(stackPanelHorizontal2);
@@ -168,32 +175,35 @@ namespace ЧисленныМетоды.ViewModels
                     TextBlock textBlock = new TextBlock()
                     {
                         Text = nameof(nagruzca.PMax),
-                        Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
                     };
-                    TextBox textBox = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+                    TextBox textBox = new TextBox()
+                    {
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex")
+                    };
 
-                    Binding bindingPmax = new Binding() { Source = nagruzca, Path = new PropertyPath(nameof(nagruzca.PMax)) };
+                    Binding bindingPmax =
+                        new Binding() {Source = nagruzca, Path = new PropertyPath(nameof(nagruzca.PMax))};
                     textBox.SetBinding(TextBox.TextProperty, bindingPmax);
 
                     TextBlock textBlockT = new TextBlock()
                     {
                         Text = nameof(nagruzca.T),
-                        Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex_TextBlock")
                     };
-                    TextBox textBoxT = new TextBox() { Style = (Style)viewModels.MainWindow.FindResource("Analitic_Simplex") };
+                    TextBox textBoxT = new TextBox()
+                    {
+                        Style = (Style) viewModels.MainWindow.FindResource("Analitic_Simplex")
+                    };
 
-                    Binding bindingT = new Binding() { Source = nagruzca, Path = new PropertyPath(nameof(nagruzca.T)) };
+                    Binding bindingT = new Binding() {Source = nagruzca, Path = new PropertyPath(nameof(nagruzca.T))};
                     textBoxT.SetBinding(TextBox.TextProperty, bindingT);
 
-                    DockPanel stackPanelHorizontal1 = new DockPanel()
-                    {
-                        Children = { textBlock, textBox }
-                    };
+                    DockPanel stackPanelHorizontal1 = new DockPanel() {Children = {textBlock, textBox}};
 
                     StackPanel stackPanelHorizontal2 = new StackPanel()
                     {
-                        Orientation = Orientation.Horizontal,
-                        Children = { textBlockT, textBoxT }
+                        Orientation = Orientation.Horizontal, Children = {textBlockT, textBoxT}
                     };
 
                     stackPanel.Children.Add(stackPanelHorizontal1);
@@ -202,12 +212,12 @@ namespace ЧисленныМетоды.ViewModels
                     _analiticView.Add(stackPanel);
                 }
             }
+
             foreach (var element in _analiticView)
             {
                 element.Visibility = Visibility.Collapsed;
                 stackPanelAnaliticForms.Children.Add(element);
             }
-
         }
 
         private void ComboBoxIElements_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -242,17 +252,17 @@ namespace ЧисленныМетоды.ViewModels
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateListElements();
-
-
         }
 
         public void UpdateListElements()
         {
             listIElements = viewModels.IElementses;
-            SumPmax = 0f;  //TODO:Подумать лучше
+            SumPmax = 0f; //TODO:Подумать лучше
             for (int i = 0; i < listIElements.Count - 1; i++)
             {
-                var generator = listIElements[i] is Generator ? listIElements[i] as Generator : throw new Exception("EventAndMethodViewModels is NULL");
+                var generator = listIElements[i] is Generator
+                    ? listIElements[i] as Generator
+                    : throw new Exception("EventAndMethodViewModels is NULL");
                 SumPmax += generator.PMax;
             }
         }

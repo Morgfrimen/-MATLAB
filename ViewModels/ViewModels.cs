@@ -24,11 +24,10 @@ namespace ЧисленныМетоды.ViewModels
         private const byte MaxCountX = 10;
         private const double ChangeSizeSimplexCanvas = 100;
 
-        public static ViewModels ViewModel =>App.Current.MainWindow.DataContext as ViewModels;
+        public static ViewModels ViewModel => Application.Current.MainWindow.DataContext as ViewModels;
         private ResourceDictionary resourceDictionary;
 
         private ICollection resourseCollection;
-        
 
         protected MainWindow mainWindow;
         private static Config config = Config.Default;
@@ -37,30 +36,32 @@ namespace ЧисленныМетоды.ViewModels
         private Canvas simplexCanvas;
 
         private byte? _countX;
+
         public ViewModels()
         {
-            resourceDictionary = App.Current.Resources;
-            CultureInfo cultureInfo = CultureInfo.CurrentCulture;
+            resourceDictionary = Application.Current.Resources;
+            var cultureInfo = CultureInfo.CurrentCulture;
             switch (cultureInfo.ToString().ToLower())
             {
                 case "ru-ru":
-                    resourceDictionary.Source = new Uri($"Style/LanguageRu.xaml",UriKind.Relative);
+                    resourceDictionary.Source = new Uri($"Style/LanguageRu.xaml", UriKind.Relative);
                     break;
                 case "es-es":
                     resourceDictionary.Source = new Uri($"Style/LanguageEn.xaml", UriKind.Relative);
                     break;
             }
-            mainWindow = App.Current.MainWindow as MainWindow;
-            analizate=new Analizate();
+
+            mainWindow = Application.Current.MainWindow as MainWindow;
+            analizate = new Analizate();
             mainWindow.Loaded += MainWindow_Loaded;
         }
 
         private void MainWindow_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             simplexCanvas.Height = mainWindow.ActualHeight - ChangeSizeSimplexCanvas;
-            for (int lineIndex = 0; lineIndex < this.nag.CointLine; lineIndex++)
+            for (var lineIndex = 0; lineIndex < nag.CointLine; lineIndex++)
             {
-                LineConnect line = nag.LineConnectGenerationIndex((byte) lineIndex);
+                var line = nag.LineConnectGenerationIndex((byte) lineIndex);
                 line.UpDatePoint();
             }
         }
@@ -81,44 +82,37 @@ namespace ЧисленныМетоды.ViewModels
             simplexCanvas.SizeChanged += SimplexCanvas_SizeChanged;
             simplexCanvas.MouseLeave += SimplexCanvas_MouseLeave;
 
-            this.nag = new Nagruzca(mainWindow.FindResource("simplexMethod_Nagruzka").ToString());
-            Canvas.SetLeft(this.nag.CanvasElement,  (250));
-            Canvas.SetTop(this.nag.CanvasElement, (250));
-            Canvas.SetZIndex(nag.CanvasElement,1);
+            nag = new Nagruzca(mainWindow.FindResource("simplexMethod_Nagruzka").ToString());
+            Canvas.SetLeft(nag.CanvasElement, 250);
+            Canvas.SetTop(nag.CanvasElement, 250);
+            Panel.SetZIndex(nag.CanvasElement, 1);
 
             eventAndMethodViewModels = new EventAndMethodViewModels();
 
-            mainWindow.mainFrame.Navigate(new ЧисленныМетоды.Result());
+            mainWindow.mainFrame.Navigate(new Result());
         }
 
-        private void SimplexCanvas_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
+        private void SimplexCanvas_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (Mouse.GetPosition(simplexCanvas).X<=0 || Mouse.GetPosition(simplexCanvas).X>=simplexCanvas.ActualWidth||
-                Mouse.GetPosition(simplexCanvas).Y <= 0 || Mouse.GetPosition(simplexCanvas).Y >= simplexCanvas.ActualHeight)
-            {
+            if (Mouse.GetPosition(simplexCanvas).X <= 0 ||
+                Mouse.GetPosition(simplexCanvas).X >= simplexCanvas.ActualWidth ||
+                Mouse.GetPosition(simplexCanvas).Y <= 0 ||
+                Mouse.GetPosition(simplexCanvas).Y >= simplexCanvas.ActualHeight)
                 foreach (UIElement simplexCanvasChild in simplexCanvas.Children)
-                {
                     if (simplexCanvasChild is Canvas)
-                    {
-                        if (((simplexCanvasChild as Canvas).ToolTip as Popup) != null)
-                        {
+                        if ((simplexCanvasChild as Canvas).ToolTip as Popup != null)
                             ((simplexCanvasChild as Canvas).ToolTip as Popup).IsOpen = false;
-                        }
-                    }
-                }
-            }
         }
 
         private void BlackTheme_Checked(object sender, RoutedEventArgs e)
         {
-
             config.BackGround = System.Drawing.Color.White;
             config.ForeGround = System.Drawing.Color.Black;
             config.Save();
-            ColorThemeBackground = new SolidColorBrush(Color.FromArgb(config.ForeGround.A,
-                config.ForeGround.R, config.ForeGround.G, config.ForeGround.B));
-            ColorThemeForeground = new SolidColorBrush(Color.FromArgb(config.BackGround.A,
-                config.BackGround.R, config.BackGround.G, config.BackGround.B));
+            ColorThemeBackground = new SolidColorBrush(Color.FromArgb(config.ForeGround.A, config.ForeGround.R,
+                config.ForeGround.G, config.ForeGround.B));
+            ColorThemeForeground = new SolidColorBrush(Color.FromArgb(config.BackGround.A, config.BackGround.R,
+                config.BackGround.G, config.BackGround.B));
         }
 
         private void WhileTheme_Checked(object sender, RoutedEventArgs e)
@@ -126,28 +120,36 @@ namespace ЧисленныМетоды.ViewModels
             config.BackGround = System.Drawing.Color.Black;
             config.ForeGround = System.Drawing.Color.White;
             config.Save();
-            ColorThemeBackground = new SolidColorBrush(Color.FromArgb(config.ForeGround.A,
-                          config.ForeGround.R, config.ForeGround.G, config.ForeGround.B));
-            ColorThemeForeground = new SolidColorBrush(Color.FromArgb(config.BackGround.A,
-                config.BackGround.R, config.BackGround.G, config.BackGround.B));
+            ColorThemeBackground = new SolidColorBrush(Color.FromArgb(config.ForeGround.A, config.ForeGround.R,
+                config.ForeGround.G, config.ForeGround.B));
+            ColorThemeForeground = new SolidColorBrush(Color.FromArgb(config.BackGround.A, config.BackGround.R,
+                config.BackGround.G, config.BackGround.B));
         }
 
-        private Brush _brushBackground = new SolidColorBrush(Color.FromArgb(config.BackGround.A,
-            config.BackGround.R, config.BackGround.G, config.BackGround.B));
+        private Brush _brushBackground = new SolidColorBrush(Color.FromArgb(config.BackGround.A, config.BackGround.R,
+            config.BackGround.G, config.BackGround.B));
 
-        private Brush _brushForeground = new SolidColorBrush(Color.FromArgb(config.ForeGround.A,
-            config.ForeGround.R, config.ForeGround.G, config.ForeGround.B));
+        private Brush _brushForeground = new SolidColorBrush(Color.FromArgb(config.ForeGround.A, config.ForeGround.R,
+            config.ForeGround.G, config.ForeGround.B));
 
         public Brush ColorThemeBackground
         {
             get => _brushBackground;
-            set { _brushBackground = value;OnPropertyChanged(nameof(ColorThemeBackground)); }
+            set
+            {
+                _brushBackground = value;
+                OnPropertyChanged(nameof(ColorThemeBackground));
+            }
         }
 
         public Brush ColorThemeForeground
         {
             get => _brushForeground;
-            set { _brushForeground = value; OnPropertyChanged(nameof(ColorThemeForeground)); }
+            set
+            {
+                _brushForeground = value;
+                OnPropertyChanged(nameof(ColorThemeForeground));
+            }
         }
 
         public byte? CountX
@@ -170,14 +172,10 @@ namespace ЧисленныМетоды.ViewModels
         /// <summary>
         /// Возвращает генераторы и нагрузка, причем нагрузка в конце
         /// </summary>
-        public List<IElements> IElementses
-        {
-            get => _elementses;
-        }
+        public List<IElements> IElementses => _elementses;
 
         public Canvas SimplexCanvas => simplexCanvas;
         //public DataGrid SimplexDataGrid => mainWindow.DataGridAnaliticView;
-
 
         internal Analizate SimplexAnalizate => analizate;
 
@@ -189,9 +187,10 @@ namespace ЧисленныМетоды.ViewModels
             }
             else
             {
-                Task.Run(() => MessageBox.Show(mainWindow.FindResource("ViewModels_NOT_ValidCountX").ToString() +MaxCountX
-                    , mainWindow.FindResource("ViewModels_Cartion_MessageBox").ToString(),
-                    MessageBoxButton.OK, MessageBoxImage.Exclamation));
+                Task.Run(() =>
+                    MessageBox.Show(mainWindow.FindResource("ViewModels_NOT_ValidCountX").ToString() + MaxCountX,
+                        mainWindow.FindResource("ViewModels_Cartion_MessageBox").ToString(), MessageBoxButton.OK,
+                        MessageBoxImage.Exclamation));
                 return 0;
             }
         }
@@ -200,56 +199,54 @@ namespace ЧисленныМетоды.ViewModels
         {
             double point = 0;
             foreach (UIElement simplexCanvasChild in simplexCanvas.Children)
-            {
-                if (Canvas.GetLeft(simplexCanvasChild)+this.nag.CanvasElement.ActualWidth >= simplexCanvas.ActualWidth)
+                if (Canvas.GetLeft(simplexCanvasChild) + nag.CanvasElement.ActualWidth >= simplexCanvas.ActualWidth)
                 {
-                    point = simplexCanvas.ActualWidth-this.nag.CanvasElement.ActualHeight*2;
-                   
+                    point = simplexCanvas.ActualWidth - nag.CanvasElement.ActualHeight * 2;
+
                     Canvas.SetLeft(simplexCanvasChild, point);
                 }
-                else if (Canvas.GetTop(simplexCanvasChild)+this.nag.CanvasElement.ActualHeight >= simplexCanvas.ActualHeight)
+                else if (Canvas.GetTop(simplexCanvasChild) + nag.CanvasElement.ActualHeight >=
+                         simplexCanvas.ActualHeight)
                 {
-                    point = simplexCanvas.ActualHeight - this.nag.CanvasElement.ActualHeight*2;
+                    point = simplexCanvas.ActualHeight - nag.CanvasElement.ActualHeight * 2;
                     Canvas.SetTop(simplexCanvasChild, point);
                 }
-            }
-            for (byte line = 0; line < this.nag.CointLine; line++)
+
+            for (byte line = 0; line < nag.CointLine; line++)
             {
-                LineConnect lineConnect = this.nag.LineConnectGenerationIndex(line);
+                var lineConnect = nag.LineConnectGenerationIndex(line);
                 lineConnect.UpDatePoint();
             }
         }
 
-
         private void CountGeneration_TextChanged(object sender, TextChangedEventArgs e)
         {
             //TODO:Запилить поддержку удаления только нескольких генераторов без сброса значений?
-            mainWindow.CanvasSimplexMethod.Children.RemoveRange(1,mainWindow.CanvasSimplexMethod.Children.Count-1);
+            mainWindow.CanvasSimplexMethod.Children.RemoveRange(1, mainWindow.CanvasSimplexMethod.Children.Count - 1);
 
             _elementses.Clear();
-            
+
             for (byte i = 0; i < _countX; i++)
             {
-                var generation = new Generator(mainWindow.FindResource("simplexMethod_Generator").ToString()+(i+1));
-                Canvas.SetLeft(generation.CanvasElement, i * (generation.CanvasElement.Width*2 + 2));
-                Canvas.SetTop(generation.CanvasElement, (2));
-                generation.LineConnectGeneration=new LineConnect(generation,this.nag);
-                this.nag.LineConnectAdd(generation.LineConnectGeneration);
-                Canvas.SetZIndex(generation.CanvasElement,1);
+                var generation = new Generator(mainWindow.FindResource("simplexMethod_Generator").ToString() + (i + 1));
+                Canvas.SetLeft(generation.CanvasElement, i * (generation.CanvasElement.Width * 2 + 2));
+                Canvas.SetTop(generation.CanvasElement, 2);
+                generation.LineConnectGeneration = new LineConnect(generation, nag);
+                nag.LineConnectAdd(generation.LineConnectGeneration);
+                Panel.SetZIndex(generation.CanvasElement, 1);
 
                 _elementses.Add(generation);
             }
 
             _elementses.Add(nag);
             eventAndMethodViewModels.Create_Analiticx_Simplex_Form();
-
-            
         }
 
-       
+        public string FindObjResourseLanguage(string key)
+        {
+            return mainWindow.FindResource(key).ToString();
+        }
 
-        public string FindObjResourseLanguage(string key) => mainWindow.FindResource(key).ToString();
-        
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
