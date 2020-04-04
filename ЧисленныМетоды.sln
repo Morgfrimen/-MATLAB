@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ЧисленныМетоды", "ЧисленныМетоды.csproj", "{5DF3AA88-0BBA-464E-B9A9-EEEFE254AEF6}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Bootstrapper", "..\Bootstrapper\Bootstrapper.wixproj", "{39B7C804-3F48-4442-B3DE-A3C138EED010}"
-EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "SetupProject", "..\SetupProject\SetupProject.wixproj", "{155DC170-0A38-40B4-A2C1-7BAE5BD0CF02}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,18 +21,6 @@ Global
 		{5DF3AA88-0BBA-464E-B9A9-EEEFE254AEF6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DF3AA88-0BBA-464E-B9A9-EEEFE254AEF6}.Release|x86.ActiveCfg = Release|Any CPU
 		{5DF3AA88-0BBA-464E-B9A9-EEEFE254AEF6}.Release|x86.Build.0 = Release|Any CPU
-		{39B7C804-3F48-4442-B3DE-A3C138EED010}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{39B7C804-3F48-4442-B3DE-A3C138EED010}.Debug|x86.ActiveCfg = Debug|x86
-		{39B7C804-3F48-4442-B3DE-A3C138EED010}.Debug|x86.Build.0 = Debug|x86
-		{39B7C804-3F48-4442-B3DE-A3C138EED010}.Release|Any CPU.ActiveCfg = Release|x86
-		{39B7C804-3F48-4442-B3DE-A3C138EED010}.Release|x86.ActiveCfg = Release|x86
-		{39B7C804-3F48-4442-B3DE-A3C138EED010}.Release|x86.Build.0 = Release|x86
-		{155DC170-0A38-40B4-A2C1-7BAE5BD0CF02}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{155DC170-0A38-40B4-A2C1-7BAE5BD0CF02}.Debug|x86.ActiveCfg = Debug|x86
-		{155DC170-0A38-40B4-A2C1-7BAE5BD0CF02}.Debug|x86.Build.0 = Debug|x86
-		{155DC170-0A38-40B4-A2C1-7BAE5BD0CF02}.Release|Any CPU.ActiveCfg = Release|x86
-		{155DC170-0A38-40B4-A2C1-7BAE5BD0CF02}.Release|x86.ActiveCfg = Release|x86
-		{155DC170-0A38-40B4-A2C1-7BAE5BD0CF02}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
